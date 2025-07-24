@@ -16,8 +16,7 @@
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
             color: #ffffff;
             overflow-x: hidden;
-            /* Allow body to scroll */
-            overflow-y: auto;
+            overflow-y: auto; /* Allow body to scroll normally */
         }
 
         /* Animated background stars */
@@ -75,9 +74,9 @@
             gap: 0.5rem;
         }
 
-        .top-message-bar .message-icon svg { /* Targeted SVG directly */
-            width: 28px; /* Increased size */
-            height: 28px; /* Increased size */
+        .top-message-bar .message-icon svg {
+            width: 28px;
+            height: 28px;
             color: #FFD700;
             vertical-align: middle;
         }
@@ -104,7 +103,7 @@
             padding: 0.5rem 1rem;
             border-radius: 8px;
             font-weight: 600;
-            cursor: pointer; /* Changed to pointer cursor */
+            cursor: pointer;
             transition: background 0.2s ease, opacity 0.5s ease, transform 0.5s ease;
             text-decoration: none;
             white-space: nowrap;
@@ -127,14 +126,12 @@
             pointer-events: none;
         }
 
-        /* Removed hover effect for top-bar-btn */
-
         .top-message-bar .close-btn {
             background: none;
             border: none;
             font-size: 1.2rem;
             color: #1a1a1a;
-            cursor: default; /* Changed to default cursor */
+            cursor: pointer; /* Changed to pointer cursor */
             padding: 0.2rem 0.5rem;
             border-radius: 5px;
             transition: background 0.2s ease;
@@ -177,7 +174,7 @@
             font-weight: 700;
             color: #ffffff;
             text-decoration: none;
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
         }
 
         .logo-icon {
@@ -187,13 +184,13 @@
             align-items: center;
             justify-content: center;
             border-radius: 8px;
-            overflow: hidden; /* Ensure image stays within bounds */
+            overflow: hidden;
         }
 
         .logo-icon img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Ensures the image scales properly within the div */
+            object-fit: contain;
         }
 
         .nav-links {
@@ -202,20 +199,20 @@
             list-style: none;
         }
 
-        .nav-links a { /* Changed from div to a */
+        .nav-links a {
             color: #ffffff;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
-            cursor: pointer; /* Changed to pointer cursor */
+            cursor: pointer;
         }
 
-        .nav-links a:hover { /* Changed from div to a */
+        .nav-links a:hover {
             color: #b3b3b3;
         }
 
-        .nav-links a::after { /* Changed from div to a */
+        .nav-links a::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -226,7 +223,7 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after { /* Changed from div to a */
+        .nav-links a:hover::after {
             width: 100%;
         }
 
@@ -245,8 +242,8 @@
 
         .hero-content {
             animation: fadeInUp 1s ease-out;
-            opacity: 1; /* Default to visible */
-            transition: opacity 0.7s ease-in-out; /* Fade animation */
+            opacity: 1;
+            transition: opacity 0.7s ease-in-out;
         }
 
         .hero-content.fade-out {
@@ -258,7 +255,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.0rem, 4.5vw, 4.0rem); /* Further reduced font size */
+            font-size: clamp(2.0rem, 4.5vw, 4.0rem);
             font-weight: 800;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #ffffff 100%);
@@ -266,16 +263,14 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.1;
-            /* Removed white-space, overflow, text-overflow to allow full text */
-            display: block; /* Ensure it's a block element for sizing */
+            display: block;
         }
 
-        /* Specific styling for the second hero headline variant */
         .hero-content.variant-1-active .hero h1 {
-            font-size: clamp(1.5rem, 3.5vw, 3.0rem); /* Even smaller for this specific headline */
-            white-space: nowrap; /* Force onto one line */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Add ellipsis if it still overflows */
+            font-size: clamp(1.5rem, 3.5vw, 3.0rem);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .hero p {
@@ -301,7 +296,7 @@
             border-radius: 8px;
             font-weight: 600;
             font-size: 1rem;
-            cursor: pointer; /* Changed to pointer cursor */
+            cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
@@ -335,7 +330,6 @@
             transform: translateY(-2px);
         }
 
-        /* New: Gold Button Style - more muted */
         .btn-gold {
             background: linear-gradient(135deg, #d4af37, #c09a20);
             color: #1a1a1a;
@@ -348,7 +342,6 @@
             background: linear-gradient(135deg, #e0b83e, #d0a02b);
         }
 
-        /* Mini line below CTA */
         .cta-bonus-text {
             font-size: 0.9rem;
             color: #b3b3b3;
@@ -356,7 +349,6 @@
             font-weight: 500;
         }
 
-        /* Wave Art Section */
         .wave-art-section {
             width: 100%;
             overflow: hidden;
@@ -372,7 +364,6 @@
             background: transparent;
         }
 
-        /* New Section: Image Left, Text Right */
         .image-text-section {
             position: relative;
             background-color: #ffffff;
@@ -404,23 +395,21 @@
             justify-content: center;
             align-items: center;
             min-width: 300px;
-            /* Added for the canvas */
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            background-color: #1a1a1a; /* Ensure dark background for the image wrapper */
+            background-color: #1a1a1a;
         }
 
-        /* Styling for the new logo image */
         .merss-token-image {
             display: block;
-            width: 100%; /* Make image fill its container */
-            height: auto; /* Maintain aspect ratio */
-            max-width: 400px; /* Limit max width */
+            width: 100%;
+            height: auto;
+            max-width: 400px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            object-fit: contain; /* Ensure the image fits within the bounds */
-            padding: 20px; /* Add some padding around the image */
+            object-fit: contain;
+            padding: 20px;
         }
 
         .image-text-section .text-content {
@@ -468,7 +457,6 @@
             line-height: 1;
         }
 
-        /* Canvas for dark animation */
         .dark-animation-canvas {
             position: absolute;
             top: 0;
@@ -479,8 +467,6 @@
             pointer-events: none;
         }
 
-
-        /* Features Section */
         .features {
             padding: 8rem 2rem;
             max-width: 1200px;
@@ -512,14 +498,12 @@
             transform-style: preserve-3d;
         }
 
-        /* Hover effects for feature cards */
         .feature-card:hover {
             transform: translateY(-5px) rotateX(2deg) rotateY(2deg);
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
-        /* Gradient Overlay for Feature Cards */
         .feature-card::before {
             content: '';
             position: absolute;
@@ -566,7 +550,6 @@
             line-height: 1.6;
         }
 
-        /* Tokenomics Section */
         .tokenomics {
             padding: 8rem 2rem;
             background: rgba(255, 255, 255, 0.02);
@@ -636,17 +619,17 @@
             color: #b3b3b3;
         }
 
-        .tokenomics-links div { /* Changed from a to div */
+        .tokenomics-links div {
             color: #b3b3b3;
             text-decoration: none;
             transition: color 0.3s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
         }
 
-        .tokenomics-links div:hover { /* Changed from a to div */
+        .tokenomics-links div:hover {
             color: #FFD700;
         }
 
@@ -671,14 +654,14 @@
             flex-wrap: wrap;
         }
 
-        .footer-links div { /* Changed from a to div */
+        .footer-links div {
             color: #b3b3b3;
             text-decoration: none;
             transition: color 0.3s ease;
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
         }
 
-        .footer-links div:hover { /* Changed from a to div */
+        .footer-links div:hover {
             color: #ffffff;
         }
 
@@ -687,7 +670,6 @@
             font-size: 0.9rem;
         }
 
-        /* New styles for footer donation section */
         .footer-donation {
             display: flex;
             flex-direction: column;
@@ -709,7 +691,7 @@
             font-size: 0.9rem;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
         }
 
         .footer-donation .wallet-address-container {
@@ -719,7 +701,7 @@
             border-radius: 8px;
             font-family: monospace;
             font-size: 0.9rem;
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
             transition: background 0.2s ease, box-shadow 0.2s ease;
             word-break: break-all;
             max-width: 90%;
@@ -934,12 +916,12 @@
             gap: 0.5rem;
             backdrop-filter: blur(5px);
             animation: pulse 2s infinite;
-            cursor: pointer; /* Changed to pointer cursor */
+            cursor: pointer;
         }
 
-        .floating-cta svg { /* Targeted SVG directly */
-            width: 28px; /* Increased size */
-            height: 28px; /* Increased size */
+        .floating-cta svg {
+            width: 28px;
+            height: 28px;
             vertical-align: middle;
         }
 
@@ -1019,9 +1001,9 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .overview-card .icon svg { /* Targeted SVG directly */
-            width: 48px; /* Significantly increased size */
-            height: 48px; /* Significantly increased size */
+        .overview-card .icon svg {
+            width: 48px;
+            height: 48px;
             margin-bottom: 1rem;
             color: #FFD700;
         }
@@ -1048,7 +1030,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
         }
 
         .overview-card .learn-more-btn:hover {
@@ -1057,7 +1039,6 @@
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
         }
 
-        /* What Can You Do with MSZ Section - UPDATED FOR LIGHT THEME */
         .what-can-you-do-section {
             padding: 8rem 2rem;
             background: #ffffff;
@@ -1125,9 +1106,9 @@
             border-color: rgba(0, 0, 0, 0.2);
         }
 
-        .what-can-you-do-card .icon svg { /* Targeted SVG directly */
-            width: 48px; /* Significantly increased size */
-            height: 48px; /* Significantly increased size */
+        .what-can-you-do-card .icon svg {
+            width: 48px;
+            height: 48px;
             margin-bottom: 1rem;
             color: #007bff;
             position: relative;
@@ -1150,7 +1131,6 @@
             z-index: 1;
         }
 
-        /* Canvas for MSZ section animation */
         .msz-animation-canvas {
             position: absolute;
             top: 0;
@@ -1161,7 +1141,6 @@
             pointer-events: none;
         }
 
-        /* Roadmap Section Styles */
         .roadmap-section {
             padding: 8rem 2rem;
             background: #1a1a1a;
@@ -1175,15 +1154,15 @@
             font-size: 3rem;
             margin-bottom: 4rem;
             color: #ffffff;
-            display: flex; /* To align icon and text */
+            display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .roadmap-section h2 svg { /* Targeted SVG directly */
-            width: 40px; /* Increased size */
-            height: 40px; /* Increased size */
-            margin-right: 15px; /* More space */
+        .roadmap-section h2 svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
             vertical-align: middle;
         }
 
@@ -1200,32 +1179,26 @@
 
         .roadmap-path {
             fill: none;
-            stroke-width: 8; /* Increased stroke width for more presence */
+            stroke-width: 8;
             transition: stroke-dashoffset 2s ease-out;
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
-            /* Enhanced glow for depth */
             filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
         }
 
         .roadmap-milestone {
-            cursor: default; /* Changed to default cursor */
-            transform-style: preserve-3d; /* Enable 3D transforms for children */
-            transition: transform 0.4s ease-out; /* Smooth 3D transition */
+            cursor: default;
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease-out;
         }
-
-        /* Removed hover effect for roadmap-milestone */
 
         .milestone-circle {
             stroke: #ffffff;
             stroke-width: 2;
             transition: transform 0.3s ease, fill 0.3s ease;
-            /* Enhanced glow for depth */
             filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
-            transform: translateZ(20px); /* Push circle forward in 3D space */
+            transform: translateZ(20px);
         }
-
-        /* Removed hover effect for milestone-circle */
 
         .milestone-text {
             font-size: 1.2rem;
@@ -1235,10 +1208,8 @@
             dominant-baseline: middle;
             transition: fill 0.3s ease, text-shadow 0.3s ease;
             text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-            transform: translateZ(20px); /* Push text forward in 3D space */
+            transform: translateZ(20px);
         }
-
-        /* Removed hover effect for milestone-text */
 
         .milestone-description {
             font-size: 0.9rem;
@@ -1247,12 +1218,9 @@
             dominant-baseline: middle;
             opacity: 0;
             transition: opacity 0.3s ease;
-            transform: translateZ(10px); /* Push description slightly forward */
+            transform: translateZ(10px);
         }
 
-        /* Removed hover effect for milestone-description */
-
-        /* New style for the checkmark icon in SVG */
         .milestone-checkmark {
             fill: none;
             stroke: #FFD700;
@@ -1260,22 +1228,16 @@
             stroke-linecap: round;
             stroke-linejoin: round;
             transition: stroke 0.3s ease;
-            transform: translateZ(25px); /* Push checkmark furthest forward */
+            transform: translateZ(25px);
         }
 
-        /* Removed hover effect for milestone-checkmark */
-
-        /* Style for the connecting line */
         .milestone-connector-line {
             stroke: rgba(255, 255, 255, 0.4);
             stroke-width: 1;
             transition: stroke 0.3s ease;
-            transform: translateZ(5px); /* Keep connector line slightly behind */
+            transform: translateZ(5px);
         }
 
-        /* Removed hover effect for milestone-connector-line */
-
-        /* Canvas for roadmap particles */
         .roadmap-particles-canvas {
             position: absolute;
             top: 0;
@@ -1295,7 +1257,6 @@
             z-index: 2;
         }
 
-        /* Responsive adjustments for roadmap */
         @media (max-width: 768px) {
             .roadmap-svg-container {
                 height: 700px;
@@ -1308,14 +1269,13 @@
             .milestone-description {
                 font-size: 0.75rem;
             }
-            .roadmap-section h2 svg { /* Smaller on mobile */
+            .roadmap-section h2 svg {
                 width: 32px;
                 height: 32px;
                 margin-right: 10px;
             }
         }
 
-        /* New Individuals Page Section Styles */
         .individuals-page-section {
             background: #1a1a1a;
             color: #ffffff;
@@ -1352,7 +1312,7 @@
         }
 
         .individuals-hero-section h2 {
-            font-size: clamp(2.0rem, 4.0vw, 3.2rem); /* Further reduced font size */
+            font-size: clamp(2.0rem, 4.0vw, 3.2rem);
             font-weight: 800;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #ffffff 100%);
@@ -1360,8 +1320,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.1;
-            /* Removed white-space, overflow, text-overflow to allow full text */
-            display: block; /* Ensure it's a block element for sizing */
+            display: block;
         }
 
         .individuals-hero-section p {
@@ -1386,7 +1345,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Benefits Section */
         .individuals-benefits-section {
             padding: 8rem 2rem;
             background: #2c2c2c;
@@ -1421,9 +1379,9 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .benefit-card .icon svg { /* Targeted SVG directly */
-            width: 48px; /* Significantly increased size */
-            height: 48px; /* Significantly increased size */
+        .benefit-card .icon svg {
+            width: 48px;
+            height: 48px;
             color: #FFD700;
             margin-bottom: 1.5rem;
         }
@@ -1440,7 +1398,6 @@
             line-height: 1.7;
         }
 
-        /* How It Works Section */
         .individuals-how-it-works-section {
             padding: 8rem 2rem;
             background: #1a1a1a;
@@ -1504,7 +1461,6 @@
             line-height: 1.7;
         }
 
-        /* Real-World Scenarios */
         .individuals-scenarios-section {
             padding: 8rem 2rem;
             background: #2c2c2c;
@@ -1534,15 +1490,14 @@
             gap: 1rem;
         }
 
-        .scenarios-list li .icon svg { /* Targeted SVG directly */
-            width: 32px; /* Increased size */
-            height: 32px; /* Increased size */
+        .scenarios-list li .icon svg {
+            width: 32px;
+            height: 32px;
             fill: #FFD700;
             flex-shrink: 0;
             vertical-align: middle;
         }
 
-        /* Testimonials Section */
         .individuals-testimonials-section {
             padding: 8rem 2rem;
             background: #1a1a1a;
@@ -1566,7 +1521,6 @@
             color: #FFD700;
         }
 
-        /* FAQ Section */
         .individuals-faq-section {
             padding: 8rem 2rem;
             background: #2c2c2c;
@@ -1598,7 +1552,7 @@
             font-size: 1.2rem;
             font-weight: 600;
             color: #ffffff;
-            cursor: default; /* Changed to default cursor */
+            cursor: pointer;
             background: rgba(255, 255, 255, 0.03);
             transition: background 0.2s ease;
         }
@@ -1631,7 +1585,6 @@
             padding-bottom: 2rem;
         }
 
-        /* Final CTA Strip */
         .individuals-final-cta {
             padding: 5rem 2rem;
             background: linear-gradient(90deg, #FFD700, #FFE033);
@@ -1653,7 +1606,7 @@
             font-size: 1.2rem;
             font-weight: 700;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
         }
 
         .individuals-final-cta .btn:hover {
@@ -1664,7 +1617,6 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /* Comparison Table Placeholder */
         .individuals-comparison-table-placeholder {
             padding: 8rem 2rem;
             background: #1a1a1a;
@@ -1693,7 +1645,6 @@
             .what-can-you-do-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
-            /* Adjustments for how-it-works-steps on larger screens */
             .how-it-works-steps {
                 flex-direction: row;
                 justify-content: center;
@@ -1717,7 +1668,6 @@
             .step-number {
                 margin-bottom: 1rem;
             }
-            /* Updated .benefits-grid for 4 columns on larger screens */
             .benefits-grid {
                 grid-template-columns: repeat(4, 1fr);
                 max-width: 1200px;
@@ -1798,13 +1748,12 @@
             }
         }
 
-        /* New Contact Us Section Styles */
         .contact-us-section {
             padding: 8rem 2rem;
             background: #2c2c2c;
             color: #ffffff;
             text-align: center;
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -1852,19 +1801,18 @@
             color: #ffffff;
         }
 
-        .contact-card p, .contact-card div { /* Changed a to div */
+        .contact-card p, .contact-card div {
             font-size: 1rem;
             color: #b3b3b3;
             text-decoration: none;
             word-break: break-all;
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
         }
 
-        .contact-card div:hover { /* Changed a to div */
+        .contact-card div:hover {
             color: #FFD700;
         }
 
-        /* Team Section Styles */
         .team-section {
             padding: 8rem 2rem;
             background: #1a1a1a;
@@ -1927,14 +1875,14 @@
             margin-bottom: 2rem;
         }
 
-        .team-social-links div { /* Changed from a to div */
+        .team-social-links div {
             color: #ffffff;
             font-size: 1.8rem;
             transition: color 0.2s ease, transform 0.2s ease;
-            cursor: default; /* Changed to default cursor */
+            cursor: default;
         }
 
-        .team-social-links div:hover { /* Changed from a to div */
+        .team-social-links div:hover {
             color: #FFD700;
             transform: translateY(-3px);
         }
@@ -1948,6 +1896,215 @@
             border-top: 1px dashed rgba(255, 255, 255, 0.1);
             padding-top: 2rem;
             margin-top: 2rem;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 90vh; /* Limit height for scrollable content */
+            overflow-y: auto; /* Enable scrolling for modal content */
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 0;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            transition: background 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-body p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            color: #b3b3b3;
+        }
+
+        .modal-body a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .modal-body a:hover {
+            text-decoration: underline;
+        }
+
+        .modal-info-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .modal-info-box strong {
+            color: #FFD700;
+        }
+
+        .modal-qr-code {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .modal-qr-code img {
+            width: 180px;
+            height: 180px;
+            border-radius: 8px;
+            border: 5px solid #ffffff;
+            background-color: #ffffff;
+            padding: 5px;
+        }
+
+        .modal-wallet-address-container {
+            background: #333333;
+            color: #ffffff;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-copy-btn {
+            background: #FFD700;
+            color: #1a1a1a;
+            border: none;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .modal-copy-btn:hover {
+            background: #e0b83e;
+            transform: translateY(-1px);
+        }
+
+        .modal-calculator {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-calculator h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+            text-align: center;
+        }
+
+        .modal-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .modal-input-group label {
+            font-size: 0.9rem;
+            color: #b3b3b3;
+            flex-shrink: 0;
+            width: 80px;
+            text-align: right;
+        }
+
+        .modal-input-group input {
+            flex-grow: 1;
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            font-size: 1rem;
+            width: 100%; /* Ensure input takes full width */
+        }
+
+        .modal-input-group input:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .modal-result {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #FFD700;
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #FFD700;
+            margin-top: 1rem;
         }
     </style>
 </head>
@@ -2019,7 +2176,7 @@
         </symbol>
         <!-- Gear Icon (for add token) -->
         <symbol id="icon-gear" viewBox="0 0 24 24">
-            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.09-.75-1.7-.98L14 2.92c-.06-.25-.29-.42-.55-.42h-4c-.26 0-.49.17-.55.42L8.08 7.3c-.61.23-1.18.58-1.7.98l-2.49-1c-.22-.09-.49-.01-.61.22l-2 3.46c-.12.22-.07.49.12.64l2.11 1.65c-.04.32-.07.64-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c-.12.22-.39.3-.61.22l2.49-1c.52.4 1.09.75 1.7.98L9.45 20.08c.06.25.29.42.55.42h4c.26 0 .49-.17.55.42l.43-2.41c.61-.23 1.18-.58 1.7-.98l2.49 1c.22.09.49.01.61-.22l2-3.46c.12.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.09-.75-1.7-.98L14 2.92c-.06-.25-.29-.42-.55-.42h-4c-.26 0-.49.17-.55.42L8.08 7.3c-.61.23-1.18.58-1.7.98l-2.49-1c-.22-.09-.49-.01-.61.22l-2 3.46c-.12.22-.07.49.12.64l2.11 1.65c-.04.32-.07.64-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c-.12.22-.39.3-.61.22l2.49-1c.52.4 1.09.75 1.7.98L9.45 20.08c.06.25.29.42.55.42h4c.26 0 .49-.17.55.42l.43-2.41c.61-.23 1.18-.58 1.7-.98l2.49 1c.22.09.49.01.61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
         </symbol>
         <!-- Download Icon (for receipt) -->
         <symbol id="icon-download" viewBox="0 0 24 24">
@@ -2111,9 +2268,9 @@
             <span class="message-text" id="rotatingMessage">Your backing funds liquidity, builds trust, and helps us launch fairly - together.</span>
         </span>
         <div class="action-group">
-            <a href="buymszmodal.html" class="top-bar-btn active" id="supportProjectBtn">Support Our Project &rarr;</a>
-            <a href="buymszmodal.html" class="top-bar-btn" id="secureTokensBtn">Secure Your First Tokens &rarr;</a>
-            <a href="buymszmodal.html" class="top-bar-btn" id="buyMszBtn">Buy MSZ Now &rarr;</a>
+            <a href="#" class="top-bar-btn active open-buy-modal" id="supportProjectBtn">Support Our Project &rarr;</a>
+            <a href="#" class="top-bar-btn open-buy-modal" id="secureTokensBtn">Secure Your First Tokens &rarr;</a>
+            <a href="#" class="top-bar-btn open-buy-modal" id="buyMszBtn">Buy MSZ Now &rarr;</a>
             <button class="close-btn" id="closeMessageBar">X</button>
         </div>
     </div>
@@ -2133,7 +2290,7 @@
             <ul class="nav-links">
                 <li><a href="#" id="navProtocol">Protocol</a></li>
                 <li><a href="#" id="navTokenomics">Tokenomics</a></li>
-                <li><a href="buymszmodal.html" id="navBuyNow">Buy Now</a></li>
+                <li><a href="#" id="navBuyNow" class="open-buy-modal">Buy Now</a></li>
                 <li><a href="#" id="navApplications">Applications</a></li>
                 <li><a href="#" id="navContactUs">Contact Us</a></li>
             </ul>
@@ -2147,7 +2304,7 @@
             <p id="hero-subheadline">The presale of a token engineered to surpass everything else — in design, durability, and dominance.</p>
             <div class="cta-buttons">
                 <div class="btn btn-primary" id="exploreProtocolBtn">Explore the Protocol</div>
-                <a href="buymszmodal.html" class="btn btn-gold" id="secureMerssNowBtn">Secure Merss Now →</a>
+                <a href="#" class="btn btn-gold open-buy-modal" id="secureMerssNowBtn">Secure Merss Now →</a>
             </div>
             <p class="cta-bonus-text" id="ctaBonusText">You won’t get a second chance at this price.</p>
         </div>
@@ -2168,7 +2325,6 @@
         <canvas class="dark-animation-canvas" id="darkAnimationCanvas"></canvas>
         <div class="section-content">
             <div class="image-wrapper">
-                <!-- Replaced falling M canvas with the new image -->
                 <img src="https://i.postimg.cc/fJK44GvH/Merrs-Token-gold.png" alt="Merss Token Gold" class="merss-token-image">
             </div>
             <div class="text-content">
@@ -2507,18 +2663,60 @@
     </footer>
 
     <!-- Floating CTA Button -->
-    <a href="buymszmodal.html" class="floating-cta" id="floatingCta">
+    <a href="#" class="floating-cta open-buy-modal" id="floatingCta">
         Secure Merss Now
         <svg width="24" height="24" fill="currentColor"><use href="#icon-currency-dollar"></use></svg>
     </a>
+
+    <!-- Buy MSZ Modal -->
+    <div class="modal-overlay" id="buyMszModalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>How to Buy MSZ</h2>
+                <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Scan the QR code below or copy the address to send BNB and receive the equivalent in MSZ.</p>
+                <p>Feel free to scroll the page and use the calculator to estimate how many MSZ tokens you'll receive.</p>
+                <p>Tokens are typically sent within 10 minutes.</p>
+                <p>If you encounter any issues, please contact us at: <a href="mailto:contact@mersstoken.org">contact@mersstoken.org</a></p>
+
+                <div class="modal-info-box">
+                    <strong>Current MSZ rate:</strong> 1 BNB = <span id="mszRate">207.27</span> MSZ<br>
+                    <strong>Minimum purchase:</strong> 0.01 BNB - <strong>Maximum:</strong> 50 BNB<br>
+                    <strong>Presale ends on August 10th - don't miss out!</strong>
+                </div>
+
+                <div class="modal-qr-code">
+                    <img src="https://placehold.co/180x180/000000/FFFFFF?text=QR+Code" alt="QR Code to send BNB">
+                </div>
+
+                <div class="modal-wallet-address-container">
+                    <span id="walletAddress">0xFF78fDa9294Fd661784445B52818aA1E8777D471</span>
+                    <button class="modal-copy-btn" id="copyAddressBtn">Copy</button>
+                </div>
+
+                <div class="modal-calculator">
+                    <h4>MSZ Calculator</h4>
+                    <div class="modal-input-group">
+                        <label for="bnbAmount">BNB Amount:</label>
+                        <input type="number" id="bnbAmount" placeholder="e.g., 0.5" step="0.01" min="0.01" max="50">
+                    </div>
+                    <div class="modal-result">
+                        You will receive: <span id="mszResult">0</span> MSZ
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Define presale status
         const presaleActive = true;
 
-        // Define the conversion rate (e.g., 1 USD = X MSZ)
-        const BNB_TO_MSZ_RATE = 0.973357 / 0.000024; // Calculated from user's reference
-        const BNB_TO_USD_RATE = 600; // Example: 1 BNB = 600 USD (adjust as needed)
+        // Define the conversion rate (e.g., 1 BNB = X MSZ)
+        const BNB_TO_MSZ_RATE = 207.27; // From the modal image
+        const WALLET_ADDRESS = "0xFF78fDa9294Fd661784445B52818aA1E8777D471"; // From the footer
 
         // Generate animated stars
         function createStars() {
@@ -2550,7 +2748,6 @@
         // Only activate the first button in the top message bar
         if (topBarButtons.length > 0) {
             topBarButtons[0].classList.add('active');
-            // Ensure other buttons are not active and are hidden
             for (let i = 1; i < topBarButtons.length; i++) {
                 topBarButtons[i].classList.remove('active');
             }
@@ -2567,12 +2764,10 @@
             }
         }
 
-        // Close message bar functionality - remove actual functionality
+        // Close message bar functionality
         document.getElementById('closeMessageBar').addEventListener('click', () => {
-            // No actual hiding, just prevent default behavior for a lean version
-            // For a functional lean version, you might hide it, but user requested no clickable elements.
-            // Keeping the button visible but non-functional.
-            console.log("Close button clicked (no action in lean version)");
+            topMessageBar.style.display = 'none'; // Hide the message bar
+            adjustLayoutForMessageBar(); // Re-adjust layout after hiding
         });
 
         // Initial layout adjustment on load
@@ -2613,7 +2808,7 @@
         });
 
         // Rain animation for the hero section
-        const heroRainCanvas = document.createElement('canvas'); // Renamed canvas ID
+        const heroRainCanvas = document.createElement('canvas');
         heroRainCanvas.id = 'heroRainCanvas';
         heroRainCanvas.style.position = 'absolute';
         heroRainCanvas.style.top = '0';
@@ -2624,10 +2819,10 @@
         heroRainCanvas.style.pointerEvents = 'none';
         document.querySelector('.hero').prepend(heroRainCanvas);
 
-        const rainCtx = heroRainCanvas.getContext('2d'); // Renamed context
-        let raindrops = []; // Renamed array
-        const numRaindrops = 500; // Increased number of raindrops
-        let animationFrameIdRain; // Declare variable for animation frame ID
+        const rainCtx = heroRainCanvas.getContext('2d');
+        let raindrops = [];
+        const numRaindrops = 500;
+        let animationFrameIdRain;
 
         class Raindrop {
             constructor() {
@@ -2636,11 +2831,11 @@
 
             reset() {
                 this.x = Math.random() * heroRainCanvas.width;
-                this.y = Math.random() * heroRainCanvas.height - heroRainCanvas.height; // Start above the canvas
-                this.length = Math.random() * 20 + 10; // Length between 10 and 30
-                this.speed = Math.random() * 5 + 3; // Speed between 3 and 8
-                this.opacity = Math.random() * 0.5 + 0.3; // Opacity between 0.3 and 0.8
-                this.width = Math.random() * 1.5 + 0.5; // Width between 0.5 and 2
+                this.y = Math.random() * heroRainCanvas.height - heroRainCanvas.height;
+                this.length = Math.random() * 20 + 10;
+                this.speed = Math.random() * 5 + 3;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.width = Math.random() * 1.5 + 0.5;
             }
 
             draw() {
@@ -2655,8 +2850,8 @@
             update() {
                 this.y += this.speed;
                 if (this.y > heroRainCanvas.height) {
-                    this.reset(); // Reset when it goes off screen
-                    this.y = -this.length; // Ensure it starts from top
+                    this.reset();
+                    this.y = -this.length;
                 }
             }
         }
@@ -2669,7 +2864,7 @@
         }
 
         function animateRainLoop() {
-            rainCtx.clearRect(0, 0, heroRainCanvas.width, heroRainCtx.canvas.height);
+            rainCtx.clearRect(0, 0, heroRainCanvas.width, heroRainCanvas.height);
             raindrops.forEach(drop => {
                 drop.update();
                 drop.draw();
@@ -2689,7 +2884,7 @@
             animateRainLoop();
         });
 
-        // Toast Notification - Keep the showToast function, but its calls will be removed
+        // Toast Notification
         const toastNotification = document.getElementById('toastNotification');
         const thankYouToast = document.getElementById('thankYouToast');
         const comingSoonToast = document.getElementById('comingSoonToast');
@@ -2701,12 +2896,6 @@
                 toastElement.classList.remove('show');
             }, 3000);
         }
-
-        // Removed all donation modal, receive tokens modal, buy tokens modal, and floating CTA button JS.
-        // Removed all copy to clipboard functionality.
-        // Removed all smooth scroll functionality.
-        // Removed all FAQ toggle logic.
-        // Removed "Coming Soon" toast logic.
 
         // --- Hero Section Dynamic Content Rotation ---
         const heroHeadlines = [
@@ -2753,27 +2942,24 @@
             }, 700); // Half of the transition duration
         }
 
-        // Cycle hero content every 9 seconds
         setInterval(updateHeroContent, 9000);
 
         // --- Dark Animation for the new section ---
         const darkAnimationCanvas = document.getElementById('darkAnimationCanvas');
         const darkAnimationCtx = darkAnimationCanvas.getContext('2d');
         let darkParticles = [];
-        // MODIFIED: Reduced number of particles for "bubbles"
         const numDarkParticles = 70;
         let mouseXDark = 0;
         let mouseYDark = 0;
         let isMouseInsideDarkSection = false;
-        let animationFrameIdDarkParticles; // Declare variable for animation frame ID
+        let animationFrameIdDarkParticles;
 
         class DarkParticle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.radius = Math.random() * 4 + 3; // Made larger
-                // MODIFIED: More opaque and light grey color
-                this.originalOpacity = Math.random() * 0.4 + 0.2; // Opacity between 0.2 and 0.6 (slightly less opaque)
+                this.radius = Math.random() * 4 + 3;
+                this.originalOpacity = Math.random() * 0.4 + 0.2;
                 this.opacity = this.originalOpacity;
                 this.vx = (Math.random() - 0.5) * 0.8;
                 this.vy = (Math.random() - 0.5) * 0.8;
@@ -2784,8 +2970,7 @@
             draw() {
                 darkAnimationCtx.beginPath();
                 darkAnimationCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                // MODIFIED: Light grey color for particles
-                darkAnimationCtx.fillStyle = `rgba(180, 180, 180, ${this.opacity})`; // Light grey (R=180, G=180, B=180)
+                darkAnimationCtx.fillStyle = `rgba(180, 180, 180, ${this.opacity})`;
                 darkAnimationCtx.fill();
             }
 
@@ -2827,8 +3012,7 @@
                 this.x = Math.random() * darkAnimationCanvas.width;
                 this.y = Math.random() * darkAnimationCanvas.height;
                 this.radius = Math.random() * 4 + 3;
-                // MODIFIED: More opaque and light grey color
-                this.originalOpacity = Math.random() * 0.4 + 0.2; // Opacity between 0.2 and 0.6 (slightly less opaque)
+                this.originalOpacity = Math.random() * 0.4 + 0.2;
                 this.opacity = this.originalOpacity;
                 this.vx = (Math.random() - 0.5) * 0.8;
                 this.vy = (Math.random() - 0.5) * 0.8;
@@ -2866,7 +3050,6 @@
             initDarkParticles();
         }
 
-        // Mouse move listener for the dark animation section
         imageTextSection.addEventListener('mousemove', (e) => {
             const rect = imageTextSection.getBoundingClientRect();
             mouseXDark = e.clientX - rect.left;
@@ -2895,7 +3078,7 @@
         const waveSpeed = 0.5;
         const waveAmplitude = 10;
         const waveFrequency = 0.02;
-        let animationFrameIdWave; // Declare variable for animation frame ID
+        let animationFrameIdWave;
 
         function drawWave() {
             waveCtx.clearRect(0, 0, waveCanvas.width, waveCtx.canvas.height);
@@ -2933,18 +3116,18 @@
         const mszAnimationCanvas = document.getElementById('mszAnimationCanvas');
         const mszAnimationCtx = mszAnimationCanvas.getContext('2d');
         let mszParticles = [];
-        const numMszParticles = 200; // Increased number of particles
+        const numMszParticles = 200;
         let mouseXMSZ = 0;
         let mouseYMSZ = 0;
         let isMouseInsideMSZSection = false;
-        let animationFrameIdMszParticles; // Declare variable for animation frame ID
+        let animationFrameIdMszParticles;
 
         class LightParticle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.radius = Math.random() * 4 + 2.5; // Made larger
-                this.originalOpacity = Math.random() * 0.7 + 0.4; // More opaque
+                this.radius = Math.random() * 4 + 2.5;
+                this.originalOpacity = Math.random() * 0.7 + 0.4;
                 this.opacity = this.originalOpacity;
                 this.vx = (Math.random() - 0.5) * 0.8;
                 this.vy = (Math.random() - 0.5) * 0.8;
@@ -3023,7 +3206,6 @@
                 y: p.y * canvasHeight
             }));
 
-            // Draw the main 'M' shape
             ctx.beginPath();
             ctx.moveTo(points[0].x, points[0].y);
             ctx.lineTo(points[1].x, points[1].y);
@@ -3032,20 +3214,16 @@
             ctx.lineTo(points[4].x, points[4].y);
             ctx.stroke();
 
-            // Add subtle connecting lines for a network effect, similar to Bitcoin image
-            // Connect top-left to bottom-right
             ctx.beginPath();
             ctx.moveTo(points[1].x, points[1].y);
             ctx.lineTo(points[4].x, points[4].y);
             ctx.stroke();
 
-            // Connect bottom-left to top-right
             ctx.beginPath();
             ctx.moveTo(points[0].x, points[0].y);
             ctx.lineTo(points[3].x, points[3].y);
             ctx.stroke();
 
-            // Connect middle-bottom to top-left and top-right (if not already covered)
             ctx.beginPath();
             ctx.moveTo(points[2].x, points[2].y);
             ctx.lineTo(points[1].x, points[1].y);
@@ -3070,14 +3248,13 @@
         function animateMszParticles() {
             mszAnimationCtx.clearRect(0, 0, mszAnimationCanvas.width, mszAnimationCanvas.height);
             
-            // Draw the 'M' shape first, so particles can move over it
             drawMShape(mszAnimationCtx, mszAnimationCanvas.width, mszAnimationCtx.canvas.height);
 
             mszParticles.forEach(particle => {
                 particle.update();
                 particle.draw();
             });
-            animationFrameIdMszParticles = requestAnimationFrame(animateMszParticles); // Corrected animation loop
+            animationFrameIdMszParticles = requestAnimationFrame(animateMszParticles);
         }
 
         const whatCanYouDoSection = document.getElementById('what-can-you-do');
@@ -3111,7 +3288,6 @@
         });
         window.addEventListener('resize', resizeMszAnimationCanvas);
 
-        // Function to generate wavy SVG path data
         function generateWavyPath(numWaves, waveAmplitudeNormalized) {
             let pathData = `M0,0`;
             const waveLength = 1 / numWaves;
@@ -3131,7 +3307,6 @@
             return pathData;
         }
 
-        // Update the wavy clip-path on load and resize
         const wavyPathElement = document.getElementById('wavyPath');
         const overviewSection = document.getElementById('overview-section');
 
@@ -3144,7 +3319,6 @@
         window.addEventListener('load', updateWavyClipPath);
         window.addEventListener('resize', updateWavyClipPath);
 
-        // Roadmap Path Drawing Animation
         document.addEventListener('DOMContentLoaded', () => {
             const roadmapPath = document.getElementById('roadmapPath');
             if (roadmapPath) {
@@ -3159,21 +3333,20 @@
             }
         });
 
-        // --- Roadmap Particles Animation ---
         const roadmapParticlesCanvas = document.getElementById('roadmapParticlesCanvas');
         const roadmapParticlesCtx = roadmapParticlesCanvas.getContext('2d');
         let roadmapParticles = [];
         const numRoadmapParticles = 150;
-        let animationFrameIdRoadmapParticles; // Declare variable for animation frame ID
+        let animationFrameIdRoadmapParticles;
         
         class RoadmapParticle {
             constructor() {
                 this.x = Math.random() * roadmapParticlesCanvas.width;
                 this.y = Math.random() * roadmapParticlesCanvas.height;
-                this.radius = Math.random() * 2 + 1; /* Slightly larger for more presence */
-                this.opacity = Math.random() * 0.6 + 0.3; /* More visible */
-                this.vx = (Math.random() - 0.5) * 0.3; /* Increased movement */
-                this.vy = (Math.random() - 0.5) * 0.3; /* Increased movement */
+                this.radius = Math.random() * 2 + 1;
+                this.opacity = Math.random() * 0.6 + 0.3;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
                 this.life = 0;
                 this.maxLife = Math.random() * 300 + 200;
             }
@@ -3181,11 +3354,11 @@
             draw() {
                 roadmapParticlesCtx.beginPath();
                 roadmapParticlesCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                roadmapParticlesCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; /* Pure white */
-                roadmapParticlesCtx.shadowBlur = this.radius * 2; /* Add shadow for depth */
-                roadmapParticlesCtx.shadowColor = `rgba(255, 215, 0, ${this.opacity * 0.8})`; /* Gold glow */
+                roadmapParticlesCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                roadmapParticlesCtx.shadowBlur = this.radius * 2;
+                roadmapParticlesCtx.shadowColor = `rgba(255, 215, 0, ${this.opacity * 0.8})`;
                 roadmapParticlesCtx.fill();
-                roadmapParticlesCtx.shadowBlur = 0; /* Reset shadow */
+                roadmapParticlesCtx.shadowBlur = 0;
             }
 
             update() {
@@ -3195,11 +3368,9 @@
 
                 this.opacity = this.originalOpacity * (1 - this.life / this.maxLife);
 
-                // Add a slight random walk to prevent clumping
                 this.vx += (Math.random() - 0.5) * 0.02;
                 this.vy += (Math.random() - 0.5) * 0.02;
 
-                // Dampen velocity to prevent particles from accelerating too much
                 this.vx *= 0.98;
                 this.vy *= 0.98;
 
@@ -3254,16 +3425,24 @@
         });
         window.addEventListener('resize', resizeRoadmapParticlesCanvas);
 
-        // --- Individuals Page Section Logic ---
-        // Removed all JS related to individualsPageSection as the section itself is removed.
-        // The "Learn more" button now scrolls to the section
-        // Removed smooth scroll functionality
-
-        // FAQ Toggle Logic - Removed actual toggle functionality
+        // FAQ Toggle Logic
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
-                // No actual toggle in lean version, just log or do nothing.
-                console.log("FAQ question clicked (no action in lean version)");
+                const answer = question.nextElementSibling;
+                const arrow = question.querySelector('.arrow');
+
+                if (answer.classList.contains('show')) {
+                    answer.classList.remove('show');
+                    question.classList.remove('active');
+                } else {
+                    // Close all other open answers
+                    document.querySelectorAll('.faq-answer.show').forEach(openAnswer => {
+                        openAnswer.classList.remove('show');
+                        openAnswer.previousElementSibling.classList.remove('active');
+                    });
+                    answer.classList.add('show');
+                    question.classList.add('active');
+                }
             });
         });
 
@@ -3273,18 +3452,90 @@
 
         businessesLearnMoreBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log("Businesses Learn More clicked (no action in lean version)");
+            showToast("Businesses section coming soon!", comingSoonToast);
         });
 
         developersLearnMoreBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log("Developers Learn More clicked (no action in lean version)");
+            showToast("Developers section coming soon!", comingSoonToast);
         });
 
-        // Removed floating CTA button functionality (now a direct link)
-        // Removed secureMerssNowBtn functionality (now a direct link)
-        // Removed footerDonateBtn functionality (now a direct link)
-        // Removed top message bar button functionalities (now direct links)
+        // --- Buy MSZ Modal Logic ---
+        const buyMszModalOverlay = document.getElementById('buyMszModalOverlay');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const openBuyModalButtons = document.querySelectorAll('.open-buy-modal'); // Select all buttons with this class
+        const bnbAmountInput = document.getElementById('bnbAmount');
+        const mszResultSpan = document.getElementById('mszResult');
+        const copyAddressBtn = document.getElementById('copyAddressBtn');
+        const walletAddressSpan = document.getElementById('walletAddress');
+
+        // Function to open the modal
+        function openBuyMszModal(event) {
+            event.preventDefault(); // Prevent default link behavior
+            buyMszModalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            // Set initial value for calculator
+            bnbAmountInput.value = '';
+            mszResultSpan.textContent = '0';
+        }
+
+        // Function to close the modal
+        function closeBuyMszModal() {
+            buyMszModalOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Add event listeners to all buttons that should open the modal
+        openBuyModalButtons.forEach(button => {
+            button.addEventListener('click', openBuyMszModal);
+        });
+
+        modalCloseBtn.addEventListener('click', closeBuyMszModal);
+        buyMszModalOverlay.addEventListener('click', (e) => {
+            if (e.target === buyMszModalOverlay) { // Close only if clicking on the overlay itself
+                closeBuyMszModal();
+            }
+        });
+
+        // Calculator logic
+        bnbAmountInput.addEventListener('input', () => {
+            const bnbAmount = parseFloat(bnbAmountInput.value);
+            if (!isNaN(bnbAmount) && bnbAmount >= 0.01 && bnbAmount <= 50) {
+                const mszAmount = bnbAmount * BNB_TO_MSZ_RATE;
+                mszResultSpan.textContent = mszAmount.toFixed(2);
+            } else if (bnbAmountInput.value === '') {
+                mszResultSpan.textContent = '0';
+            } else {
+                mszResultSpan.textContent = 'Invalid amount';
+            }
+        });
+
+        // Copy wallet address to clipboard
+        copyAddressBtn.addEventListener('click', () => {
+            const addressToCopy = walletAddressSpan.textContent;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = addressToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Address copied to clipboard!', toastNotification);
+        });
+
+        // Footer Donate button (now opens the modal)
+        document.getElementById('footerDonateBtn').addEventListener('click', openBuyMszModal);
+        
+        // Footer wallet address copy (re-enabled)
+        document.getElementById('footerWalletAddressContainer').addEventListener('click', () => {
+            const addressToCopy = document.getElementById('footerWalletAddressContainer').textContent.trim();
+            const tempInput = document.createElement('textarea');
+            tempInput.value = addressToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Address copied to clipboard!', toastNotification);
+        });
 
     </script>
 </body>
