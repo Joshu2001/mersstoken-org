@@ -691,7 +691,7 @@
             font-size: 0.9rem;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
-            cursor: default;
+            cursor: pointer; /* Changed to pointer cursor */
         }
 
         .footer-donation .wallet-address-container {
@@ -701,7 +701,7 @@
             border-radius: 8px;
             font-family: monospace;
             font-size: 0.9rem;
-            cursor: default;
+            cursor: pointer; /* Changed to pointer cursor */
             transition: background 0.2s ease, box-shadow 0.2s ease;
             word-break: break-all;
             max-width: 90%;
@@ -2651,7 +2651,7 @@
             <!-- New donation section in footer -->
             <div class="footer-donation">
                 <p>Support Mersstoken.org:</p>
-                <div class="btn btn-gold" id="footerDonateBtn">Donate</div>
+                <div class="btn btn-gold open-donate-modal" id="footerDonateBtn">Donate</div>
                 <div class="wallet-address-container" id="footerWalletAddressContainer">
                     0xFF78fDa9294Fd661784445B52818aA1E8777D471
                 </div>
@@ -2710,6 +2710,45 @@
         </div>
     </div>
 
+    <!-- Donate Modal -->
+    <div class="modal-overlay" id="donateModalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Support Mersstoken.org</h2>
+                <button class="modal-close-btn" id="donateModalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for considering a donation to Merss Protocol. Your support helps us continue to develop and improve our project.</p>
+                <p>Scan the QR code below or copy the address to send your BNB donation.</p>
+                <p>Every contribution, big or small, makes a difference!</p>
+
+                <div class="modal-info-box">
+                    <strong>Donation Address:</strong> BNB (BEP-20) Network Only
+                </div>
+
+                <div class="modal-qr-code">
+                    <img src="https://placehold.co/180x180/000000/FFFFFF?text=Donate+QR" alt="QR Code for Donation">
+                </div>
+
+                <div class="modal-wallet-address-container">
+                    <span id="donateWalletAddress">0xFF78fDa9294Fd661784445B52818aA1E8777D471</span>
+                    <button class="modal-copy-btn" id="copyDonateAddressBtn">Copy</button>
+                </div>
+
+                <div class="modal-calculator">
+                    <h4>Optional: Enter Donation Amount</h4>
+                    <div class="modal-input-group">
+                        <label for="donateBnbAmount">BNB:</label>
+                        <input type="number" id="donateBnbAmount" placeholder="e.g., 0.1" step="0.01" min="0">
+                    </div>
+                    <div class="modal-result">
+                        Equivalent in USD (approx): <span id="donateUsdResult">0.00</span> USD
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Define presale status
         const presaleActive = true;
@@ -2717,6 +2756,7 @@
         // Define the conversion rate (e.g., 1 BNB = X MSZ)
         const BNB_TO_MSZ_RATE = 207.27; // From the modal image
         const WALLET_ADDRESS = "0xFF78fDa9294Fd661784445B52818aA1E8777D471"; // From the footer
+        const BNB_TO_USD_RATE = 600; // Example: 1 BNB = 600 USD (adjust as needed)
 
         // Generate animated stars
         function createStars() {
@@ -3522,9 +3562,68 @@
             showToast('Address copied to clipboard!', toastNotification);
         });
 
-        // Footer Donate button (now opens the modal)
-        document.getElementById('footerDonateBtn').addEventListener('click', openBuyMszModal);
-        
+        // --- Donate Modal Logic ---
+        const donateModalOverlay = document.getElementById('donateModalOverlay');
+        const donateModalCloseBtn = document.getElementById('donateModalCloseBtn');
+        const openDonateModalButtons = document.querySelectorAll('.open-donate-modal'); // Select all buttons with this class
+        const donateBnbAmountInput = document.getElementById('donateBnbAmount');
+        const donateUsdResultSpan = document.getElementById('donateUsdResult');
+        const copyDonateAddressBtn = document.getElementById('copyDonateAddressBtn');
+        const donateWalletAddressSpan = document.getElementById('donateWalletAddress');
+
+        // Function to open the donate modal
+        function openDonateModal(event) {
+            event.preventDefault(); // Prevent default link behavior
+            donateModalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            // Set initial value for calculator
+            donateBnbAmountInput.value = '';
+            donateUsdResultSpan.textContent = '0.00';
+        }
+
+        // Function to close the donate modal
+        function closeDonateModal() {
+            donateModalOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Add event listeners to all buttons that should open the donate modal
+        openDonateModalButtons.forEach(button => {
+            button.addEventListener('click', openDonateModal);
+        });
+
+        donateModalCloseBtn.addEventListener('click', closeDonateModal);
+        donateModalOverlay.addEventListener('click', (e) => {
+            if (e.target === donateModalOverlay) { // Close only if clicking on the overlay itself
+                closeDonateModal();
+            }
+        });
+
+        // Donate Calculator logic (BNB to USD)
+        donateBnbAmountInput.addEventListener('input', () => {
+            const bnbAmount = parseFloat(donateBnbAmountInput.value);
+            if (!isNaN(bnbAmount) && bnbAmount >= 0) {
+                const usdAmount = bnbAmount * BNB_TO_USD_RATE;
+                donateUsdResultSpan.textContent = usdAmount.toFixed(2);
+            } else if (donateBnbAmountInput.value === '') {
+                donateUsdResultSpan.textContent = '0.00';
+            } else {
+                donateUsdResultSpan.textContent = 'Invalid amount';
+            }
+        });
+
+        // Copy donate wallet address to clipboard
+        copyDonateAddressBtn.addEventListener('click', () => {
+            const addressToCopy = donateWalletAddressSpan.textContent;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = addressToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Address copied to clipboard!', toastNotification);
+        });
+
         // Footer wallet address copy (re-enabled)
         document.getElementById('footerWalletAddressContainer').addEventListener('click', () => {
             const addressToCopy = document.getElementById('footerWalletAddressContainer').textContent.trim();
