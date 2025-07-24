@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Merss Protocol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Apply Inter font family globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* Dark background for standalone view */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #e0e0e0;
+        }
+
+        /* Styles for the Modal Overlay */
+        .modal-overlay {
+            display: flex; /* Always show for standalone file */
+            position: fixed; /* Stay in place */
+            z-index: 10000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            padding: 20px; /* Padding around the modal content */
+        }
+
+        /* Styles for the Modal Content Box */
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: auto; /* Removed auto margin for flex centering */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInScale 0.3s ease-out;
+            overflow-y: auto; /* Enable scroll for content if it overflows */
+            max-height: 90vh; /* Limit modal height */
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #b3b3b3;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #FFD700; /* Gold color for heading */
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            color: #b3b3b3;
+        }
+
+        /* QR Code Styling */
+        .qr-code-container {
+            margin: 1.5rem auto; /* Center the image and add vertical spacing */
+            width: 150px; /* Set a fixed width for the QR code */
+            height: 150px; /* Set a fixed height for the QR code */
+            display: flex; /* Use flex to center the image inside if it's smaller */
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px; /* Match the old placeholder's border-radius */
+            overflow: hidden; /* Ensure image doesn't spill out */
+            background-color: #fff; /* Light background for the QR container */
+            padding: 5px; /* Small padding inside the container */
+        }
+
+        .qr-code-container img {
+            max-width: 100%; /* Ensure the image fits within its container */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Remove extra space below image */
+        }
+
+
+        /* Wallet Address Styling */
+        .wallet-address {
+            background-color: #2c2c2c;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            margin: 1rem auto 0.5rem auto;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #FFD700; /* Gold color for address */
+            cursor: copy;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            word-break: break-all; /* Break long addresses */
+        }
+
+        .wallet-address:hover {
+            background-color: #3a3a3a;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Donation Amount Buttons */
+        .donation-amounts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem; /* Space before custom inputs */
+        }
+
+        .donation-amount-btn {
+            background: linear-gradient(135deg, #FFD700, #FFAA00); /* Gold gradient */
+            color: #1a1a1a;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+            display: flex; /* Align text and MSZ value */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+            min-width: 120px; /* Ensure buttons have a minimum width */
+        }
+
+        .donation-amount-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, #FFDD00, #FFBB00);
+        }
+
+        .donation-amount-btn .msz-value {
+            font-size: 0.8rem;
+            font-weight: 400;
+            margin-top: 0.3rem;
+            color: #333333;
+        }
+
+        /* Custom Amount Inputs */
+        .custom-amount-inputs {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .custom-amount-inputs input[type="number"] {
+            background-color: #2c2c2c;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            color: #ffffff;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .custom-amount-inputs input[type="number"]:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Hide number input arrows */
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        .msz-equivalent {
+            font-size: 0.9rem;
+            color: #b3b3b3;
+            margin-top: 1rem;
+        }
+
+        .msz-equivalent span {
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments for modal */
+        @media (max-width: 600px) {
+            .modal-content {
+                width: 95%;
+                padding: 30px 20px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .donation-amounts {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .donation-amount-btn {
+                width: 80%; /* Make buttons wider on small screens */
+            }
+
+            .custom-amount-inputs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .custom-amount-inputs input[type="number"] {
+                max-width: 80%;
+            }
+        }
+
+        /* Toast Notification Styles (copied from previous context) */
+        .toast-notification {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1003;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, bottom 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast-notification.show {
+            display: block;
+            opacity: 1;
+            bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotification">
+        Address copied to clipboard!
+    </div>
+    <div class="toast-notification" id="thankYouToast">
+        Thank you for helping us advance the project!
+    </div>
+
+    <!-- Donation Modal -->
+    <div class="modal-overlay" id="donationModal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="closeDonationModal">X</button>
+            <h2>Support the Merss Protocol</h2>
+            <p>Your contribution helps us build a more decentralized and transparent future.</p>
+            <p>Donate in BNB to help us grow:</p>
+            <p>Use this QR code or address below to donate BNB:</p>
+            <div class="qr-code-container">
+                <a href='https://postimg.cc/2bL9VhY9' target='_blank'>
+                    <img src='https://i.postimg.cc/2bL9VhY9/merss-donation-qr.png' border='0' alt='merss-donation-qr'/>
+                </a>
+            </div>
+            <div class="wallet-address" id="donationWalletAddress">
+                0xFF78fDa9294Fd661784445B52818aA1E8777D471
+            </div>
+            <p style="font-size: 0.85rem; color: #666; margin-top: -0.5rem; margin-bottom: 1.5rem;">Click to copy address</p>
+
+            <div class="donation-amounts">
+                <button class="donation-amount-btn" data-usd-amount="50">
+                    50$ in BNB
+                    <span class="msz-value">-> Receive <span id="msz-50"></span> MSZ</span>
+                </button>
+                <button class="donation-amount-btn" data-usd-amount="100">
+                    100$ in BNB
+                    <span class="msz-value">-> Receive <span id="msz-100"></span> MSZ</span>
+                </button>
+                <button class="donation-amount-btn" data-usd-amount="200">
+                    200$ in BNB
+                    <span class="msz-value">-> Receive <span id="msz-200"></span> MSZ</span>
+                </button>
+            </div>
+            <div class="custom-amount-inputs">
+                <input type="number" id="customBnbAmountInput" placeholder="Custom BNB Amount" value="">
+                <input type="number" id="customUsdAmountInput" placeholder="Or custom amount? (USD)">
+            </div>
+            <p class="msz-equivalent">Enter USD to see MSZ equivalent: <span id="customMszEquivalent">0</span> MSZ</p>
+        </div>
+    </div>
+
+    <script>
+        // Define the conversion rates (copied from new_canvas)
+        const BNB_TO_USD_PRICE = 600; // Example: 1 BNB = 600 USD
+        const MSZ_BNB_RATIO = 1000; // Example: 1 BNB donation gives 1000 MSZ
+
+        // Toast Notification Functionality (copied from new_canvas)
+        const toastNotification = document.getElementById('toastNotification');
+        const thankYouToast = document.getElementById('thankYouToast');
+
+        function showToast(message, toastElement) {
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 3000);
+        }
+
+        // Function to calculate MSZ based on USD
+        function calculateMSZFromUSD(usdAmount) {
+            // Convert USD to BNB, then BNB to MSZ
+            const bnbAmount = usdAmount / BNB_TO_USD_PRICE;
+            return bnbAmount * MSZ_BNB_RATIO;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const donationModal = document.getElementById('donationModal');
+            const closeDonationModalBtn = document.getElementById('closeDonationModal');
+            const donationWalletAddress = document.getElementById('donationWalletAddress');
+            const donationAmountBtns = document.querySelectorAll('.donation-amount-btn');
+            const customUsdAmountInput = document.getElementById('customUsdAmountInput');
+            const customBnbAmountInput = document.getElementById('customBnbAmountInput');
+            const customMszEquivalent = document.getElementById('customMszEquivalent');
+
+            // Update MSZ equivalent for fixed donation buttons
+            function updateMszValues() {
+                donationAmountBtns.forEach(button => {
+                    const usdAmount = parseFloat(button.dataset.usdAmount);
+                    if (!isNaN(usdAmount) && BNB_TO_USD_PRICE > 0) {
+                        const mszEquivalent = calculateMSZFromUSD(usdAmount);
+                        const mszSpan = button.querySelector('.msz-value span');
+                        if (mszSpan) {
+                            mszSpan.textContent = mszEquivalent.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+                        }
+                    }
+                });
+            }
+
+            // Function to update custom MSZ equivalent
+            function updateCustomMszEquivalent() {
+                const usdAmount = parseFloat(customUsdAmountInput.value);
+                if (!isNaN(usdAmount) && usdAmount > 0 && BNB_TO_USD_PRICE > 0) {
+                    const bnbEquivalent = usdAmount / BNB_TO_USD_PRICE;
+                    const mszEquivalent = bnbEquivalent * MSZ_BNB_RATIO;
+                    customMszEquivalent.textContent = mszEquivalent.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+                    // Also update BNB input based on USD
+                    customBnbAmountInput.value = bnbEquivalent.toFixed(4); // 4 decimal places for BNB
+                } else {
+                    customMszEquivalent.textContent = '0';
+                    customBnbAmountInput.value = '';
+                }
+            }
+
+            // Event Listeners for custom input changes
+            customUsdAmountInput.addEventListener('input', updateCustomMszEquivalent);
+            customBnbAmountInput.addEventListener('input', () => {
+                const bnbAmount = parseFloat(customBnbAmountInput.value);
+                if (!isNaN(bnbAmount) && bnbAmount >= 0) { // Allow 0 for clearing input
+                    const usdEquivalent = bnbAmount * BNB_TO_USD_PRICE;
+                    const mszEquivalent = bnbAmount * MSZ_BNB_RATIO;
+                    customUsdAmountInput.value = usdEquivalent.toFixed(2); // 2 decimal places for USD
+                    customMszEquivalent.textContent = mszEquivalent.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+                } else {
+                    customUsdAmountInput.value = '';
+                    customMszEquivalent.textContent = '0';
+                }
+            });
+
+            // Close Modal
+            if (closeDonationModalBtn) {
+                closeDonationModalBtn.addEventListener('click', () => {
+                    donationModal.style.display = 'none';
+                });
+            }
+
+            // Close modal when clicking outside of modal-content
+            window.addEventListener('click', (event) => {
+                if (event.target == donationModal) {
+                    donationModal.style.display = 'none';
+                }
+            });
+
+            // Copy Wallet Address to Clipboard
+            if (donationWalletAddress) {
+                donationWalletAddress.addEventListener('click', () => {
+                    const address = donationWalletAddress.textContent.trim();
+                    const tempInput = document.createElement('textarea');
+                    tempInput.value = address;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy'); // Use execCommand for broader compatibility in iframes
+                    document.body.removeChild(tempInput);
+                    
+                    // Provide visual feedback
+                    const originalText = donationWalletAddress.textContent;
+                    donationWalletAddress.textContent = 'Copied!';
+                    donationWalletAddress.style.backgroundColor = '#d4edda'; // Greenish background
+                    donationWalletAddress.style.color = '#155724'; // Dark green text
+
+                    setTimeout(() => {
+                        donationWalletAddress.textContent = originalText;
+                        donationWalletAddress.style.backgroundColor = '#2c2c2c'; // Revert to original background
+                        donationWalletAddress.style.color = '#FFD700'; // Revert to original text color
+                    }, 1500);
+
+                    showToast('Address copied to clipboard!', toastNotification);
+                    showToast('Thank you for helping us advance the project!', thankYouToast);
+                });
+            }
+
+            // Initial update of MSZ values on load
+            updateMszValues();
+            updateCustomMszEquivalent(); // Also update custom values on load
+        });
+    </script>
+</body>
+</html>
