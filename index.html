@@ -839,7 +839,7 @@
                 justify-content: center;
             }
             .image-text-section .text-content ul li {
-                justify-content: center;
+                justify: center;
             }
 
             .custom-amount-inputs {
@@ -1166,76 +1166,138 @@
             vertical-align: middle;
         }
 
-        .roadmap-svg-container {
-            width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            height: 600px;
+        /* New Roadmap Timeline Styles */
+        .timeline-container {
             position: relative;
-            z-index: 2;
-            padding-right: 20px;
-            box-sizing: border-box;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 0;
         }
 
-        .roadmap-path {
-            fill: none;
-            stroke-width: 8;
-            transition: stroke-dashoffset 2s ease-out;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #FFD700, #c09a20, #1a1a1a);
+            border-radius: 2px;
+            transform: translateX(-50%);
+            z-index: 0;
         }
 
-        .roadmap-milestone {
-            cursor: default;
-            transform-style: preserve-3d;
-            transition: transform 0.4s ease-out;
-        }
-
-        .milestone-circle {
-            stroke: #ffffff;
-            stroke-width: 2;
-            transition: transform 0.3s ease, fill 0.3s ease;
-            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
-            transform: translateZ(20px);
-        }
-
-        .milestone-text {
-            font-size: 1.2rem;
-            font-weight: 700;
-            fill: #ffffff;
-            text-anchor: middle;
-            dominant-baseline: middle;
-            transition: fill 0.3s ease, text-shadow 0.3s ease;
-            text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-            transform: translateZ(20px);
-        }
-
-        .milestone-description {
-            font-size: 0.9rem;
-            fill: #e0e0e0;
-            text-anchor: middle;
-            dominant-baseline: middle;
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            transform: translateZ(10px);
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .milestone-checkmark {
-            fill: none;
-            stroke: #FFD700;
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: stroke 0.3s ease;
-            transform: translateZ(25px);
+        .timeline-item.in-view {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .milestone-connector-line {
-            stroke: rgba(255, 255, 255, 0.4);
-            stroke-width: 1;
-            transition: stroke 0.3s ease;
-            transform: translateZ(5px);
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border: 3px solid #1a1a1a;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: calc(50% - 40px); /* Adjust for dot and spacing */
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 40px;
+        }
+
+        .timeline-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .timeline-content p {
+            font-size: 1rem;
+            color: #b3b3b3;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 20px; /* Move line to left for mobile */
+                transform: translateX(0);
+            }
+
+            .timeline-item {
+                flex-direction: row !important; /* Force all items to left for mobile */
+                text-align: left !important;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-dot {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px); /* Adjust width for mobile */
+                margin-left: 60px !important; /* Push content right of the line */
+                margin-right: 0 !important;
+            }
+
+            .timeline-number {
+                font-size: 2rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.4rem;
+            }
+
+            .timeline-content p {
+                font-size: 0.9rem;
+            }
         }
 
         .roadmap-particles-canvas {
@@ -1255,25 +1317,6 @@
             font-weight: 500;
             position: relative;
             z-index: 2;
-        }
-
-        @media (max-width: 768px) {
-            .roadmap-svg-container {
-                height: 700px;
-                max-width: 100%;
-                padding-right: 10px;
-            }
-            .milestone-text {
-                font-size: 0.9rem;
-            }
-            .milestone-description {
-                font-size: 0.75rem;
-            }
-            .roadmap-section h2 svg {
-                width: 32px;
-                height: 32px;
-                margin-right: 10px;
-            }
         }
 
         .individuals-page-section {
@@ -1838,6 +1881,34 @@
             align-items: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative; /* For the pseudo-element glow */
+            overflow: hidden; /* Ensure glow stays within bounds */
+        }
+
+        .team-profile-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.7s ease-out;
+            z-index: 0;
+        }
+
+        .team-profile-card:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .team-profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .team-avatar svg {
@@ -1848,18 +1919,24 @@
             border-radius: 50%;
             background: rgba(255, 215, 0, 0.1);
             padding: 10px;
+            position: relative; /* Ensure it's above the pseudo-element */
+            z-index: 1;
         }
 
         .team-profile-card h3 {
             font-size: 2rem;
             margin-bottom: 0.5rem;
             color: #ffffff;
+            position: relative;
+            z-index: 1;
         }
 
         .team-profile-card .role {
             font-size: 1.1rem;
             color: #b3b3b3;
             margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .team-profile-card .bio {
@@ -1867,22 +1944,27 @@
             line-height: 1.6;
             color: #b3b3b3;
             margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .team-social-links {
             display: flex;
             gap: 1.5rem;
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .team-social-links div {
+        .team-social-links a { /* Changed from div to a for clickable link */
             color: #ffffff;
             font-size: 1.8rem;
             transition: color 0.2s ease, transform 0.2s ease;
-            cursor: default;
+            text-decoration: none; /* Remove underline */
+            cursor: pointer; /* Ensure it's clickable */
         }
 
-        .team-social-links div:hover {
+        .team-social-links a:hover {
             color: #FFD700;
             transform: translateY(-3px);
         }
@@ -2238,10 +2320,6 @@
         <symbol id="icon-linkedin" viewBox="0 0 24 24">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
         </symbol>
-        <!-- Twitter/X Icon (for team social) -->
-        <symbol id="icon-twitter-x" viewBox="0 0 24 24">
-            <path d="M18.901 1.199H23.3L15.314 9.44L24 22.801H16.126L10.324 14.77L4.74 22.801H.362L8.769 14.071L0 1.199H8.16L13.523 8.35L18.901 1.199ZM17.14 20.678H19.5L7.261 3.322H4.891L17.14 20.678Z"/>
-        </symbol>
         <!-- Mail Icon (for contact us) -->
         <symbol id="icon-mail-contact" viewBox="0 0 24 24">
             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10z"/>
@@ -2422,116 +2500,68 @@
         <canvas class="roadmap-particles-canvas" id="roadmapParticlesCanvas"></canvas>
         <h2>
             <svg width="32" height="32" fill="currentColor"><use href="#icon-map"></use></svg>
-            Roadmap: Phase 1 – Foundation Launched
+            Merss Protocol Roadmap — Step-by-Step
         </h2>
-        <div class="roadmap-svg-container">
-            <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                    <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#FFD700" />
-                        <stop offset="50%" stop-color="#FFFBCB" />
-                        <stop offset="100%" stop-color="#FFFFFF" />
-                    </linearGradient>
-
-                    <filter id="glow">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-                        <feFlood flood-color="#FFD700" flood-opacity="1" result="color" />
-                        <feComposite in="color" in2="blur" operator="in" result="glow" />
-                        <feMerge>
-                            <feMergeNode in="glow"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-
-                    <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                        <stop offset="0%" stop-color="#FFD700" />
-                        <stop offset="100%" stop-color="rgba(255, 215, 0, 0)" />
-                    </radialGradient>
-                </defs>
-
-                <!-- Updated Roadmap Path for a more linear, wavy look -->
-                <path id="roadmapPath" class="roadmap-path" d="M50,400 C100,420 125,380 150,400 C200,420 250,330 300,350 C350,370 400,420 450,400 C500,380 550,330 600,350 C700,370 800,420 850,400 C950,380 1000,330 1050,350 C1075,360 1085,380 1100,370" stroke="url(#pathGradient)" filter="url(#glow)"></path>
-
-                <!-- Milestones - Updated transforms to match new path -->
-                <!-- Milestone 1: MVP Protocol Design Finalized -->
-                <g class="roadmap-milestone" transform="translate(150,400)">
-                    <circle r="15" class="milestone-circle" fill="url(#goldGradient)"></circle>
-                    <path class="milestone-checkmark" d="M-6,0 L-2,4 L6,-4"></path>
-                    <line x1="0" y1="15" x2="0" y2="60" class="milestone-connector-line"></line>
-                    <text class="milestone-text" y="75">MVP Protocol Design Finalized</text>
-                    <text class="milestone-description" y="95">Core architecture and features complete.</text>
-                </g>
-
-                <!-- Milestone 2: Presale Launch (with BNB donations) -->
-                <g class="roadmap-milestone" transform="translate(300,350)">
-                    <circle r="15" class="milestone-circle" fill="url(#goldGradient)"></circle>
-                    <path class="milestone-checkmark" d="M-6,0 L-2,4 L6,-4"></path>
-                    <line x1="0" y1="-15" x2="0" y2="-60" class="milestone-connector-line"></line>
-                    <text class="milestone-text" y="-75">Presale Launch (with BNB donations)</text>
-                    <text class="milestone-description" y="-95">Community funding initiated.</text>
-                </g>
-
-                <!-- Milestone 3: MSZ Token Contract Deployed -->
-                <g class="roadmap-milestone" transform="translate(450,400)">
-                    <circle r="15" class="milestone-circle" fill="url(#goldGradient)"></circle>
-                    <path class="milestone-checkmark" d="M-6,0 L-2,4 L6,-4"></path>
-                    <line x1="0" y1="15" x2="0" y2="60" class="milestone-connector-line"></line>
-                    <text class="milestone-text" y="75">MSZ Token Contract Deployed</text>
-                    <text class="milestone-description" y="95">Official token on blockchain.</text>
-                </g>
-
-                <!-- Milestone 4: Smart Contract Audit & Fixes -->
-                <g class="roadmap-milestone" transform="translate(600,350)">
-                    <circle r="15" class="milestone-circle" fill="url(#goldGradient)"></circle>
-                    <path class="milestone-checkmark" d="M-6,0 L-2,4 L6,-4"></path>
-                    <line x1="0" y1="-15" x2="0" y2="-60" class="milestone-connector-line"></line>
-                    <text class="milestone-text" y="-75">Smart Contract Audit & Fixes</text>
-                    <text class="milestone-description" y="-95">Security verified by third-party.</text>
-                </g>
-
-                <!-- Milestone 5: Liquidity Added to PancakeSwap -->
-                <g class="roadmap-milestone" transform="translate(850,400)">
-                    <circle r="15" class="milestone-circle" fill="url(#goldGradient)"></circle>
-                    <path class="milestone-checkmark" d="M-6,0 L-2,4 L6,-4"></path>
-                    <line x1="0" y1="15" x2="0" y2="60" class="milestone-connector-line"></line>
-                    <text class="milestone-text" y="75">Liquidity Added to PancakeSwap</text>
-                    <text class="milestone-description" y="95">MSZ available for trading.</text>
-                </g>
-                
-                <!-- Milestone 6: Supporter Reward System (Donate -> Receive MSZ) -->
-                <g class="roadmap-milestone" transform="translate(1050,350)">
-                    <circle r="15" class="milestone-circle" fill="url(#goldGradient)"></circle>
-                    <path class="milestone-checkmark" d="M-6,0 L-2,4 L6,-4"></path>
-                    <line x1="0" y1="-15" x2="0" y2="-60" class="milestone-connector-line"></line>
-                    <text class="milestone-text" y="-75">
-                        <tspan x="0" dy="0em">Supporter Reward System</tspan>
-                        <tspan x="0" dy="1.2em">(Donate -> Receive MSZ)</tspan>
-                    </text>
-                    <text class="milestone-description" y="-105">Incentives for early backers.</tspan>
-                </g>
-                
-                <!-- Milestone 7: Initial LP (Liquidity Pool) Staked & Secured -->
-                <g class="roadmap-milestone" transform="translate(1100,370)">
-                    <circle r="15" class="milestone-circle" fill="url(#goldGradient)"></circle>
-                    <path class="milestone-checkmark" d="M-6,0 L-2,4 L6,-4"></path>
-                    <line x1="0" y1="15" x2="0" y2="60" class="milestone-connector-line"></line>
-                    <text class="milestone-text" y="75">
-                        <tspan x="0" dy="0em">Initial LP (Liquidity Pool)</tspan>
-                        <tspan x="0" dy="1.2em">Staked & Secured</tspan>
-                    </text>
-                    <text class="milestone-description" y="111">Ensuring market stability.</tspan>
-                </g>
-                
-                <!-- Glowing "path complete" flare at the end of the line -->
-                <circle cx="1100" cy="370" r="20" fill="url(#goldGradient)" opacity="0.8">
-                    <animate attributeName="r" from="20" to="25" dur="1s" begin="0s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" from="0.8" to="0.4" dur="1s" begin="0s" repeatCount="indefinite" />
-                </circle>
-
-            </svg>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">01</span>
+                    <h3>MVP Protocol Design Finalized</h3>
+                    <p>Core yield logic, time-based mechanics, and staking model defined.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">02</span>
+                    <h3>Smart Contract Fixes</h3>
+                    <p>Code reviewed, vulnerabilities patched, optimization performed.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">03</span>
+                    <h3>$MSZ Token Contract Deployed</h3>
+                    <p>Smart contract deployed to BNB Chain with upgradeability, PoTE logic, and yield modules.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">04</span>
+                    <h3>Presale Launch (BNB Donations)</h3>
+                    <p>Open donation period for early supporters in exchange for MSZ tokens.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">05</span>
+                    <h3>Initial Liquidity Added to PancakeSwap</h3>
+                    <p>LP tokens created and locked; MSZ becomes tradable.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">06</span>
+                    <h3>Supporter Reward System Activated</h3>
+                    <p>Donators receive MSZ according to contribution tier and time-lock options.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">07</span>
+                    <h3>Initial LP Staking & Security</h3>
+                    <p>Liquidity pool is locked and staking mechanisms are activated to generate yield.</p>
+                </div>
+            </div>
         </div>
         <p class="roadmap-footer-tagline">
-            Phase 2: Public Launch, DAO Transition & Ecosystem Growth — Coming Soon.
+            Each step brings us closer to a more robust and decentralized future.
         </p>
     </section>
 
@@ -2582,7 +2612,7 @@
 
     <!-- Team Section -->
     <section class="team-section" id="teamSection">
-        <h2> Founder Infos</h2>
+        <h2> Meet the Founder</h2>
         <div class="team-profile-card">
             <div class="team-avatar">
                 <svg width="100" height="100" fill="currentColor"><use href="#icon-user-circle"></use></svg>
@@ -2590,16 +2620,14 @@
             <h3>Joshua Sajous</h3>
             <p class="role">Founder & Architect of Merss Protocol</p>
             <p class="bio">
-                Founder of Regaarder and Creator of $MSZ. Built the Merss engine, tokenomics, and vision to reward patience over hype.
-                “Time is the yield engine. I'm just the mechanic.”
+                Founder of Regaarder. Creator of $MSZ. Architect of the Merss Protocol, a decentralized system where users can lend, borrow, and collateralize assets while earning time-based yield.
+                Built for patient believers, not hype chasers.
+                “Hype fades. Time pays. Merss was built to prove it.”
             </p>
             <div class="team-social-links">
-                <div aria-label="Twitter/X Profile">
-                    <svg width="24" height="24" fill="currentColor"><use href="#icon-twitter-x"></use></svg>
-                </div>
-                <div aria-label="LinkedIn Profile">
+                <a href="https://www.linkedin.com/in/joshuasajous/" target="_blank" aria-label="LinkedIn Profile">
                     <svg width="24" height="24" fill="currentColor"><use href="#icon-linkedin"></use></svg>
-                </div>
+                </a>
             </div>
         </div>
         <p class="team-statement">
@@ -3359,19 +3387,7 @@
         window.addEventListener('load', updateWavyClipPath);
         window.addEventListener('resize', updateWavyClipPath);
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const roadmapPath = document.getElementById('roadmapPath');
-            if (roadmapPath) {
-                const pathLength = roadmapPath.getTotalLength();
-                roadmapPath.style.strokeDasharray = pathLength;
-                roadmapPath.style.strokeDashoffset = pathLength;
-
-                setTimeout(() => {
-                    roadmapPath.style.transition = 'stroke-dashoffset 2s ease-out';
-                    roadmapPath.style.strokeDashoffset = '0';
-                }, 500);
-            }
-        });
+        // Removed roadmap path animation as the SVG roadmap is removed.
 
         const roadmapParticlesCanvas = document.getElementById('roadmapParticlesCanvas');
         const roadmapParticlesCtx = roadmapParticlesCanvas.getContext('2d');
@@ -3464,6 +3480,31 @@
             animateRoadmapParticles();
         });
         window.addEventListener('resize', resizeRoadmapParticlesCanvas);
+
+        // Intersection Observer for Timeline Items
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.2 // Trigger when 20% of the item is visible
+        };
+
+        const timelineObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    // Optional: Unobserve once animated to save resources
+                    // observer.unobserve(entry.target);
+                } else {
+                    entry.target.classList.remove('in-view'); // Revert when out of view
+                }
+            });
+        }, observerOptions);
+
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
 
         // FAQ Toggle Logic
         document.querySelectorAll('.faq-question').forEach(question => {
@@ -3581,7 +3622,7 @@
             donateUsdResultSpan.textContent = '0.00';
         }
 
-        // Function to close the donate modal
+        // Function to close the modal
         function closeDonateModal() {
             donateModalOverlay.classList.remove('show');
             document.body.style.overflow = 'auto'; // Restore scrolling
