@@ -104,7 +104,7 @@
             padding: 0.5rem 1rem;
             border-radius: 8px;
             font-weight: 600;
-            cursor: default; /* Changed to default cursor */
+            cursor: pointer; /* Changed to pointer cursor */
             transition: background 0.2s ease, opacity 0.5s ease, transform 0.5s ease;
             text-decoration: none;
             white-space: nowrap;
@@ -202,20 +202,20 @@
             list-style: none;
         }
 
-        .nav-links div { /* Changed from a to div */
+        .nav-links a { /* Changed from div to a */
             color: #ffffff;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
-            cursor: default; /* Changed to default cursor */
+            cursor: pointer; /* Changed to pointer cursor */
         }
 
-        .nav-links div:hover { /* Changed from a to div */
+        .nav-links a:hover { /* Changed from div to a */
             color: #b3b3b3;
         }
 
-        .nav-links div::after { /* Changed from a to div */
+        .nav-links a::after { /* Changed from div to a */
             content: '';
             position: absolute;
             bottom: -5px;
@@ -226,7 +226,7 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links div:hover::after { /* Changed from a to div */
+        .nav-links a:hover::after { /* Changed from div to a */
             width: 100%;
         }
 
@@ -244,7 +244,6 @@
         }
 
         .hero-content {
-            max-width: 800px;
             animation: fadeInUp 1s ease-out;
             opacity: 1; /* Default to visible */
             transition: opacity 0.7s ease-in-out; /* Fade animation */
@@ -302,7 +301,7 @@
             border-radius: 8px;
             font-weight: 600;
             font-size: 1rem;
-            cursor: default; /* Changed to default cursor */
+            cursor: pointer; /* Changed to pointer cursor */
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
@@ -935,7 +934,7 @@
             gap: 0.5rem;
             backdrop-filter: blur(5px);
             animation: pulse 2s infinite;
-            cursor: default; /* Changed to default cursor */
+            cursor: pointer; /* Changed to pointer cursor */
         }
 
         .floating-cta svg { /* Targeted SVG directly */
@@ -1797,25 +1796,6 @@
             .what-can-you-do-grid {
                 grid-template-columns: 1fr;
             }
-            .individuals-hero-section h2 {
-                font-size: 2rem;
-                /* white-space: normal; */ /* Removed to allow wrapping */
-                /* overflow: visible; */ /* Removed to allow wrapping */
-                /* text-overflow: clip; */ /* Removed to allow wrapping */
-            }
-            .individuals-benefits-section h3,
-            .individuals-how-it-works-section h3,
-            .individuals-scenarios-section h3,
-            .individuals-testimonials-section h3,
-            .individuals-faq-section h3,
-            .individuals-final-cta h3,
-            .individuals-comparison-table-placeholder h3 {
-                font-size: 2rem;
-            }
-            .individuals-final-cta .btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
         }
 
         /* New Contact Us Section Styles */
@@ -2131,9 +2111,9 @@
             <span class="message-text" id="rotatingMessage">Your backing funds liquidity, builds trust, and helps us launch fairly - together.</span>
         </span>
         <div class="action-group">
-            <div class="top-bar-btn active" id="supportProjectBtn">Support Our Project &rarr;</div>
-            <div class="top-bar-btn" id="secureTokensBtn">Secure Your First Tokens &rarr;</div>
-            <div class="top-bar-btn" id="buyMszBtn">Buy MSZ Now &rarr;</div>
+            <a href="https://github.com/Joshu2001/mersstoken-org/blob/main/buymszmodal.html" class="top-bar-btn active" id="supportProjectBtn">Support Our Project &rarr;</a>
+            <a href="https://github.com/Joshu2001/mersstoken-org/blob/main/buymszmodal.html" class="top-bar-btn" id="secureTokensBtn">Secure Your First Tokens &rarr;</a>
+            <a href="https://github.com/Joshu2001/mersstoken-org/blob/main/buymszmodal.html" class="top-bar-btn" id="buyMszBtn">Buy MSZ Now &rarr;</a>
             <button class="close-btn" id="closeMessageBar">X</button>
         </div>
     </div>
@@ -2151,11 +2131,11 @@
                 <span>Merss</span>
             </div>
             <ul class="nav-links">
-                <li><div id="navProtocol">Protocol</div></li>
-                <li><div id="navTokenomics">Tokenomics</div></li>
-                <li><div id="navBuyNow">Buy Now</div></li>
-                <li><div id="navApplications">Applications</div></li>
-                <li><div id="navContactUs">Contact Us</div></li>
+                <li><a href="#" id="navProtocol">Protocol</a></li>
+                <li><a href="#" id="navTokenomics">Tokenomics</a></li>
+                <li><a href="https://github.com/Joshu2001/mersstoken-org/blob/main/buymszmodal.html" id="navBuyNow">Buy Now</a></li>
+                <li><a href="#" id="navApplications">Applications</a></li>
+                <li><a href="#" id="navContactUs">Contact Us</a></li>
             </ul>
         </nav>
     </header>
@@ -2167,7 +2147,7 @@
             <p id="hero-subheadline">The presale of a token engineered to surpass everything else — in design, durability, and dominance.</p>
             <div class="cta-buttons">
                 <div class="btn btn-primary" id="exploreProtocolBtn">Explore the Protocol</div>
-                <div class="btn btn-gold" id="secureMerssNowBtn">Secure Merss Now →</div>
+                <a href="https://github.com/Joshu2001/mersstoken-org/blob/main/buymszmodal.html" class="btn btn-gold" id="secureMerssNowBtn">Secure Merss Now →</a>
             </div>
             <p class="cta-bonus-text" id="ctaBonusText">You won’t get a second chance at this price.</p>
         </div>
@@ -2527,10 +2507,10 @@
     </footer>
 
     <!-- Floating CTA Button -->
-    <div class="floating-cta" id="floatingCta">
+    <a href="https://github.com/Joshu2001/mersstoken-org/blob/main/buymszmodal.html" class="floating-cta" id="floatingCta">
         Secure Merss Now
         <svg width="24" height="24" fill="currentColor"><use href="#icon-currency-dollar"></use></svg>
-    </div>
+    </a>
 
     <script>
         // Define presale status
@@ -3301,34 +3281,11 @@
             console.log("Developers Learn More clicked (no action in lean version)");
         });
 
-        // Re-added floating CTA button functionality
-        const floatingCta = document.getElementById('floatingCta');
-        floatingCta.addEventListener('click', () => {
-            showToast('Coming soon! Please check back later.', comingSoonToast);
-        });
+        // Removed floating CTA button functionality (now a direct link)
+        // Removed secureMerssNowBtn functionality (now a direct link)
+        // Removed footerDonateBtn functionality (now a direct link)
+        // Removed top message bar button functionalities (now direct links)
 
-        // Event listener for the "Secure Merss Now" button in the hero section
-        const secureMerssNowBtn = document.getElementById('secureMerssNowBtn');
-        secureMerssNowBtn.addEventListener('click', () => {
-            showToast('Coming soon! Please check back later.', comingSoonToast);
-        });
-
-        // Event listener for the "Donate" button in the footer
-        const footerDonateBtn = document.getElementById('footerDonateBtn');
-        footerDonateBtn.addEventListener('click', () => {
-            showToast('Coming soon! Please check back later.', comingSoonToast);
-        });
-
-        // Event listeners for top message bar buttons
-        document.getElementById('supportProjectBtn').addEventListener('click', () => {
-            showToast('Coming soon! Please check back later.', comingSoonToast);
-        });
-        document.getElementById('secureTokensBtn').addEventListener('click', () => {
-            showToast('Coming soon! Please check back later.', comingSoonToast);
-        });
-        document.getElementById('buyMszBtn').addEventListener('click', () => {
-            showToast('Coming soon! Please check back later.', comingSoonToast);
-        });
     </script>
 </body>
 </html>
