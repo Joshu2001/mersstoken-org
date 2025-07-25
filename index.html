@@ -2788,24 +2788,40 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        
-            <!-- New donation section in footer -->
-            <div class="footer-donation">
-                <p>Support Mersstoken.org:</p>
-                <div class="btn btn-gold open-donate-modal" id="footerDonateBtn">Donate</div>
-                <div class="wallet-address-container" id="footerWalletAddressContainer">
+   
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+
+            <!-- Donation Section -->
+            <div class="footer-donation text-center md:text-left">
+                <p class="text-lg font-semibold mb-2">Support Mersstoken.org:</p>
+                <button class="btn btn-gold open-donate-modal" id="footerDonateBtn">Donate</button>
+                <div class="wallet-address-container mt-2">
                     0xFF78fDa9294Fd661784445B52818aA1E8777D471
                 </div>
-                <div class="wallet-address-container" id="contactusinfos">
-                Contact us at : Contact@mersstoken.org
-                Follow us on twitter at :https://x.com/MerssOfficial
-                Follow us on Reddit at :https://www.reddit.com/r/MerssToken/
-                </div>
             </div>
-            <div class="copyright">
-                © 2025 Merss Protocol. Building the Last and most evolved form of Crypto.
+
+            <!-- Contact and Social Media Section -->
+            <div class="contact-social text-center md:text-right">
+                <p class="text-lg font-semibold mb-2">Contact us:</p>
+                <div class="social-icons flex justify-center md:justify-end items-center mb-3">
+                    <!-- Email Address (plain text) -->
+                    <span class="text-white text-md mr-4">Contact@mersstoken.org</span>
+
+                    <!-- Twitter Icon -->
+                    <a href="https://x.com/MerssOfficial" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <!-- Reddit Icon -->
+                    <a href="https://www.reddit.com/r/MerssToken/" target="_blank" rel="noopener noreferrer" aria-label="Join us on Reddit">
+                        <i class="fab fa-reddit"></i>
+                    </a>
+                </div>
+                <div class="copyright text-sm text-gray-400">
+                    © 2025 Merss Protocol. Building the Last and most evolved form of Crypto.
+                </div>
             </div>
         </div>
     </footer>
