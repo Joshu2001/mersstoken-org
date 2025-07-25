@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merss Protocol - High-Trust Yield Distribution</title>
     <style>
+        /* Base styles for the entire page */
         * {
             margin: 0;
             padding: 0;
@@ -131,7 +132,7 @@
             border: none;
             font-size: 1.2rem;
             color: #1a1a1a;
-            cursor: pointer; /* Changed to pointer cursor */
+            cursor: pointer;
             padding: 0.2rem 0.5rem;
             border-radius: 5px;
             transition: background 0.2s ease;
@@ -400,16 +401,18 @@
             justify-content: center;
             align-items: center;
             min-width: 300px;
-            border-radius: 15px; /* Added from ddx.html */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Added from ddx.html */
-            overflow: hidden; /* Added from ddx.html */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            /* Ensure the wrapper has a defined height or content to size the canvas */
+            height: 400px; /* Explicit height for the wrapper to contain the canvas */
         }
 
         /* New: Falling Logo Canvas for image-wrapper */
         .logo-falling-canvas {
             display: block;
             width: 100%;
-            height: 400px; /* Set a default height */
+            height: 100%; /* Make canvas fill its parent wrapper */
             background-color: #1a1a1a;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -695,7 +698,7 @@
             font-size: 0.9rem;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
-            cursor: pointer; /* Changed to pointer cursor */
+            cursor: pointer;
         }
 
         .footer-donation .wallet-address-container {
@@ -705,7 +708,7 @@
             border-radius: 8px;
             font-family: monospace;
             font-size: 0.9rem;
-            cursor: pointer; /* Changed to pointer cursor */
+            cursor: pointer;
             transition: background 0.2s ease, box-shadow 0.2s ease;
             word-break: break-all;
             max-width: 90%;
@@ -713,7 +716,16 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Removed hover effect for wallet-address-container */
+        /* Social icons in footer */
+        .social-icons a {
+            color: #b3b3b3; /* Default icon color */
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #FFD700; /* Gold on hover */
+        }
 
         /* Custom amount input styles */
         .custom-amount-inputs {
@@ -929,8 +941,6 @@
             vertical-align: middle;
         }
 
-        /* Removed hover effect for floating-cta */
-
         /* Responsive adjustments for floating CTA */
         @media (max-width: 600px) {
             .floating-cta {
@@ -1034,7 +1044,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
-            cursor: pointer; /* Changed to pointer */
+            cursor: pointer;
         }
 
         .overview-card .learn-more-btn:hover {
@@ -1586,7 +1596,7 @@
             border-radius: 10px;
             margin-bottom: 1.5rem;
             overflow: hidden;
-            max-width: 900px; /* Adjusted for main FAQ section */
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -1944,7 +1954,7 @@
             padding: 2rem;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            max-width: 500px; /* Base max-width */
+            max-width: 500px;
             width: 90%;
             position: relative;
             transform: translateY(-20px);
@@ -1953,8 +1963,8 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            max-height: 90vh; /* Limit height for scrollable content */
-            overflow-y: auto; /* Enable scrolling for modal content */
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal-overlay.show .modal-content {
@@ -2104,7 +2114,7 @@
             background: rgba(0, 0, 0, 0.3);
             color: #ffffff;
             font-size: 1rem;
-            width: 100%; /* Ensure input takes full width */
+            width: 100%;
         }
 
         .modal-input-group input:focus {
@@ -2127,7 +2137,7 @@
 
         /* Styles for Individuals Modal */
         .individuals-modal-content {
-            max-width: 900px; /* Increased max-width for more content */
+            max-width: 900px;
         }
 
         .individuals-modal-content h3 {
@@ -2165,7 +2175,7 @@
 
         .individuals-modal-content ul li .icon {
             flex-shrink: 0;
-            color: #007bff; /* Blue for checkmarks */
+            color: #007bff;
             font-size: 1.2rem;
             margin-top: 0.2rem;
         }
@@ -2223,7 +2233,7 @@
         }
 
         .individuals-modal-content .faq-section-in-modal .faq-item {
-            max-width: none; /* Override main page max-width */
+            max-width: none;
             margin-left: 0;
             margin-right: 0;
         }
@@ -2261,6 +2271,98 @@
             background: #ffffff;
             color: #1a1a1a;
             transform: translateY(-2px);
+            box-shadow: none; /* Removed redundant shadow on hover */
+        }
+
+        /* Team Section Styles */
+        .team-section {
+            padding: 6rem 2rem;
+            background: #2c2c2c;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .team-section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+
+        .team-profile-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2.5rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #c09a20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            overflow: hidden; /* Ensure image fits */
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .team-avatar svg {
+            width: 80px;
+            height: 80px;
+            color: #1a1a1a;
+        }
+
+        .team-profile-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .team-profile-card .role {
+            font-size: 1.1rem;
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-profile-card .bio {
+            font-size: 1rem;
+            color: #b3b3b3;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .team-social-links a {
+            color: #b3b3b3;
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .team-social-links a:hover {
+            color: #FFD700;
+        }
+
+        .team-statement {
+            font-size: 0.9rem;
+            color: #b3b3b3;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
     </style>
@@ -2333,7 +2435,7 @@
         </symbol>
         <!-- Gear Icon (for add token) -->
         <symbol id="icon-gear" viewBox="0 0 24 24">
-            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.09-.75-1.7-.98L14 2.92c-.06-.25-.29-.42-.55-.42h-4c-.26 0-.49.17-.55.42L8.08 7.3c-.61.23-1.18.58-1.7.98l-2.49-1c-.22-.09-.49-.01-.61.22l-2 3.46c-.12.22-.07.49.12.64l2.11 1.65c-.04.32-.07.64-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c-.12.22-.39.3-.61.22l2.49-1c.52.4 1.09.75 1.7.98L9.45 20.08c.06.25.29.42.55.42h4c.26 0 .49-.17.55-.42l.43-2.41c.61-.23 1.18-.58 1.7-.98l2.49 1c.22.09.49.01.61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.09-.75-1.7-.98L14 2.92c-.06-.25-.29-.42-.55-.42h-4c-.26 0-.49.17-.55.42L8.08 7.3c-.61.23-1.18.58-1.7.98l-2.49-1c-.22-.09-.49-.01-.61.22l-2 3.46c-.12.22-.39.3-.61.22l2.11 1.65c-.04.32-.07.64-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c-.12.22-.39.3-.61.22l2.49-1c.52.4 1.09.75 1.7.98L9.45 20.08c.06.25.29.42.55.42h4c.26 0 .49-.17.55-.42l.43-2.41c.61-.23 1.18-.58 1.7-.98l2.49 1c.22.09.49.01.61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
         </symbol>
         <!-- Download Icon (for receipt) -->
         <symbol id="icon-download" viewBox="0 0 24 24">
@@ -2409,6 +2511,9 @@
         </symbol>
     </svg>
 
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- Toast Notification -->
     <div class="toast-notification" id="toastNotification">
         Address copied to clipboard!
@@ -2453,7 +2558,7 @@
                 <li><a href="#tokenomics" id="navTokenomics">Tokenomics</a></li>
     
                 <li><a href="#what-can-you-do" id="navApplications">Applications</a></li>
-                <li><a href="#individuals-faq-section" id="navFaq">FAQs</a></li> <!-- New FAQ link -->
+                <li><a href="#individuals-faq-section" id="navFaq">FAQs</a></li>
                 <li><a href="#" id="navContactUs">Contact Us</a></li>
             </ul>
         </nav>
@@ -2465,7 +2570,6 @@
             <h1 id="hero-headline">Merss: Not Your Average Token</h1>
             <p id="hero-subheadline">The presale of a token engineered to surpass everything else — in design, durability, and dominance.</p>
             <div class="cta-buttons">
-                <!-- Changed "Explore the Protocol" to an anchor tag and linked to "what-is-merss" -->
                 <a href="#what-is-merss" class="btn btn-primary" id="exploreProtocolBtn">Explore the Protocol</a>
                 <a href="#" class="btn btn-gold open-buy-modal" id="secureMerssNowBtn">Secure Merss Now →</a>
             </div>
@@ -2485,10 +2589,9 @@
 
     <!-- New Section: Image Left, Text Right with Dark Animation -->
     <section class="image-text-section" id="what-is-merss">
-        <canvas class="dark-animation-canvas" id="darkAnimationCanvas"></canvas> <!-- Re-added canvas -->
+        <canvas class="dark-animation-canvas" id="darkAnimationCanvas"></canvas>
         <div class="section-content">
             <div class="image-wrapper">
-                <!-- Replaced image with canvas for falling logos -->
                 <canvas class="logo-falling-canvas" id="logoFallingCanvas"></canvas>
             </div>
             <div class="text-content">
@@ -2680,7 +2783,6 @@
         </div>
         <div class="tokenomics-actions">
             <a href="https://docs.google.com/document/d/1unCUccdkm-Zy5h0DOz5IYWHuSG71WMYY/edit?usp=drive_link&ouid=105341595759999124379&rtpof=true&sd=true" target="_blank" class="btn btn-secondary" id="readWhitepaperBtn">Read our Whitepaper</a>
-            <!-- Removed tokenomics-links div as requested -->
         </div>
     </section>
 
@@ -2689,14 +2791,15 @@
         <h2> Meet the Founder</h2>
         <div class="team-profile-card">
             <div class="team-avatar">
-                <svg width="100" height="100" fill="currentColor"><use href="#icon-user-circle"></use></svg>
+                <!-- Using an image for the avatar for better visual appeal -->
+                <img src="https://placehold.co/120x120/FFD700/1a1a1a?text=JS" alt="Joshua Sajous Avatar">
             </div>
             <h3>Joshua Sajous</h3>
             <p class="role">Founder & Architect of Merss Protocol</p>
             <p class="bio">
                 Founder of Regaarder. Creator of $MSZ. Architect of the Merss Protocol, a decentralized system where users can lend, borrow, and collateralize assets while earning time-based yield.
                 Built for patient believers, not hype chasers.
-                “Hype fades. Time pays. Merss was built to prove it.” reach out to me at : https://www.linkedin.com/in/joshuasajous/ or click on the icon below.
+                “Hype fades. Time pays. Merss was built to prove it.” reach out to me at : <a href="https://www.linkedin.com/in/joshuasajous/" target="_blank" class="text-blue-400 hover:underline">https://www.linkedin.com/in/joshuasajous/</a> or click on the icon below.
             </p>
             <div class="team-social-links">
                 <a href="https://www.linkedin.com/in/joshuasajous/" target="_blank" aria-label="LinkedIn Profile">
@@ -2777,7 +2880,6 @@
             </div>
             <div class="contact-card">
                 <div class="icon">
-                    <!-- Placeholder for Reddit icon if not available in SVG defs -->
                     <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M2.27 12c0-1.83 1.49-3.32 3.32-3.32h1.49l.64-2.12c.11-.37.45-.64.85-.64h6.71c.4 0 .74.27.85.64l.64 2.12h1.49c1.83 0 3.32 1.49 3.32 3.32v6.71c0 1.83-1.49 3.32-3.32 3.32H5.59c-1.83 0-3.32-1.49-3.32-3.32V12zm10.73 6.71c-1.83 0-3.32-1.49-3.32-3.32s1.49-3.32 3.32-3.32 3.32 1.49 3.32 3.32-1.49 3.32-3.32 3.32zm-5.32-3.32c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1zm8.64 0c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1z"/>
                     </svg>
@@ -2797,7 +2899,7 @@
             <div class="footer-donation text-center md:text-left">
                 <p class="text-lg font-semibold mb-2">Support Mersstoken.org:</p>
                 <button class="btn btn-gold open-donate-modal" id="footerDonateBtn">Donate</button>
-                <div class="wallet-address-container mt-2">
+                <div class="wallet-address-container mt-2" id="footerWalletAddressContainer">
                     0xFF78fDa9294Fd661784445B52818aA1E8777D471
                 </div>
             </div>
@@ -3261,7 +3363,7 @@
         const ctaBonusTextElement = document.getElementById('ctaBonusText');
 
         function updateHeroContent() {
-            heroContent.classList.add('fade-out'); // Start fade out
+            heroContent.classList.add('fade-out');
 
             setTimeout(() => {
                 currentHeadlineIndex = (currentHeadlineIndex + 1) % heroHeadlines.length;
@@ -3271,16 +3373,15 @@
                 heroSubheadlineElement.textContent = nextContent.subheadline;
                 ctaBonusTextElement.textContent = nextContent.bonusText;
 
-                // Apply/remove variant-specific class for font sizing
                 if (nextContent.applyVariant1) {
                     heroContent.classList.add('variant-1-active');
                 } else {
                     heroContent.classList.remove('variant-1-active');
                 }
 
-                heroContent.classList.remove('fade-out'); // Remove fade out
-                heroContent.classList.add('fade-in'); // Start fade in
-            }, 700); // Half of the transition duration
+                heroContent.classList.remove('fade-out');
+                heroContent.classList.add('fade-in');
+            }, 700);
         }
 
         setInterval(updateHeroContent, 9000);
@@ -3660,8 +3761,6 @@
         window.addEventListener('load', updateWavyClipPath);
         window.addEventListener('resize', updateWavyClipPath);
 
-        // Removed roadmap path animation as the SVG roadmap is removed.
-
         const roadmapParticlesCanvas = document.getElementById('roadmapParticlesCanvas');
         const roadmapParticlesCtx = roadmapParticlesCanvas.getContext('2d');
         let roadmapParticles = [];
@@ -3758,19 +3857,17 @@
         const timelineItems = document.querySelectorAll('.timeline-item');
 
         const observerOptions = {
-            root: null, // viewport
+            root: null,
             rootMargin: '0px',
-            threshold: 0.2 // Trigger when 20% of the item is visible
+            threshold: 0.2
         };
 
         const timelineObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
-                    // Optional: Unobserve once animated to save resources
-                    // observer.unobserve(entry.target);
                 } else {
-                    entry.target.classList.remove('in-view'); // Revert when out of view
+                    entry.target.classList.remove('in-view');
                 }
             });
         }, observerOptions);
@@ -3789,7 +3886,6 @@
                     answer.classList.remove('show');
                     question.classList.remove('active');
                 } else {
-                    // Close all other open answers (on the main page)
                     document.querySelectorAll('.individuals-faq-section .faq-answer.show').forEach(openAnswer => {
                         openAnswer.classList.remove('show');
                         openAnswer.previousElementSibling.classList.remove('active');
@@ -3803,47 +3899,40 @@
         // Event listeners for "Businesses" and "Developers" Learn More buttons
         const businessesLearnMoreBtn = document.getElementById('businessesLearnMoreBtn');
        
-
         businessesLearnMoreBtn.addEventListener('click', (e) => {
             e.preventDefault();
             showToast("Businesses section coming soon!", comingSoonToast);
         });
 
-      
-
         // --- Buy MSZ Modal Logic ---
         const buyMszModalOverlay = document.getElementById('buyMszModalOverlay');
         const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const openBuyModalButtons = document.querySelectorAll('.open-buy-modal'); // Select all buttons with this class
+        const openBuyModalButtons = document.querySelectorAll('.open-buy-modal');
         const bnbAmountInput = document.getElementById('bnbAmount');
         const mszResultSpan = document.getElementById('mszResult');
         const copyAddressBtn = document.getElementById('copyAddressBtn');
         const walletAddressSpan = document.getElementById('walletAddress');
 
-        // Function to open the modal
         function openBuyMszModal(event) {
-            event.preventDefault(); // Prevent default link behavior
+            event.preventDefault();
             buyMszModalOverlay.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling background
-            // Set initial value for calculator
+            document.body.style.overflow = 'hidden';
             bnbAmountInput.value = '';
             mszResultSpan.textContent = '0';
         }
 
-        // Function to close the modal
         function closeBuyMszModal() {
             buyMszModalOverlay.classList.remove('show');
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto';
         }
 
-        // Add event listeners to all buttons that should open the modal
         openBuyModalButtons.forEach(button => {
             button.addEventListener('click', openBuyMszModal);
         });
 
         modalCloseBtn.addEventListener('click', closeBuyMszModal);
         buyMszModalOverlay.addEventListener('click', (e) => {
-            if (e.target === buyMszModalOverlay) { // Close only if clicking on the overlay itself
+            if (e.target === buyMszModalOverlay) {
                 closeBuyMszModal();
             }
         });
@@ -3876,36 +3965,32 @@
         // --- Donate Modal Logic ---
         const donateModalOverlay = document.getElementById('donateModalOverlay');
         const donateModalCloseBtn = document.getElementById('donateModalCloseBtn');
-        const openDonateModalButtons = document.querySelectorAll('.open-donate-modal'); // Select all buttons with this class
+        const openDonateModalButtons = document.querySelectorAll('.open-donate-modal');
         const donateBnbAmountInput = document.getElementById('donateBnbAmount');
         const donateUsdResultSpan = document.getElementById('donateUsdResult');
         const copyDonateAddressBtn = document.getElementById('copyDonateAddressBtn');
         const donateWalletAddressSpan = document.getElementById('donateWalletAddress');
 
-        // Function to open the donate modal
         function openDonateModal(event) {
-            event.preventDefault(); // Prevent default link behavior
+            event.preventDefault();
             donateModalOverlay.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling background
-            // Set initial value for calculator
+            document.body.style.overflow = 'hidden';
             donateBnbAmountInput.value = '';
             donateUsdResultSpan.textContent = '0.00';
         }
 
-        // Function to close the modal
         function closeDonateModal() {
             donateModalOverlay.classList.remove('show');
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto';
         }
 
-        // Add event listeners to all buttons that should open the donate modal
         openDonateModalButtons.forEach(button => {
             button.addEventListener('click', openDonateModal);
         });
 
         donateModalCloseBtn.addEventListener('click', closeDonateModal);
         donateModalOverlay.addEventListener('click', (e) => {
-            if (e.target === donateModalOverlay) { // Close only if clicking on the overlay itself
+            if (e.target === donateModalOverlay) {
                 closeDonateModal();
             }
         });
@@ -3956,19 +4041,6 @@
         const numFallingLogos = 50;
         let animationFrameIdFallingLogos;
 
-        // Ensure image loads before starting animation
-        logoImage.onload = () => {
-            initFallingLogos();
-            animateFallingLogos();
-        };
-
-        // Fallback for image loading errors
-        logoImage.onerror = () => {
-            console.error("Failed to load mini logo image for falling animation. Using text fallback.");
-            initFallingLogos(true); // Use text fallback if image fails to load
-            animateFallingLogos();
-        };
-
         class FallingLogo {
             constructor(useTextFallback = false) {
                 this.useTextFallback = useTextFallback;
@@ -3987,7 +4059,6 @@
             }
 
             draw() {
-                // If image failed to load or fallback is requested, draw 'M'
                 if (this.useTextFallback || !logoImage.complete || logoImage.naturalWidth === 0) {
                     logoFallingCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
                     logoFallingCtx.font = `${this.size}px Arial`;
@@ -4009,9 +4080,8 @@
                 this.y += this.speed;
                 this.x += this.vx;
                 this.rotation += this.rotationSpeed;
-                this.opacity -= 0.001; // Fade out over time
+                this.opacity -= 0.001;
 
-                // Reset if it goes off screen or fades out
                 if (this.y > logoFallingCanvas.height || this.opacity <= 0 || this.x < -this.size || this.x > logoFallingCanvas.width + this.size) {
                     this.reset();
                 }
@@ -4039,25 +4109,45 @@
             if (imageWrapper) {
                 logoFallingCanvas.width = imageWrapper.clientWidth;
                 logoFallingCanvas.height = imageWrapper.clientHeight;
-                initFallingLogos(); // Reinitialize particles on resize
+                // Reinitialize particles on resize to ensure they start within the new bounds
+                // Only re-init if the image is loaded, otherwise, it might cause issues with fallback
+                if (logoImage.complete && logoImage.naturalWidth > 0) {
+                    initFallingLogos(false);
+                } else {
+                    initFallingLogos(true); // Use text fallback if image is not ready
+                }
             }
         }
 
-        window.addEventListener('load', resizeLogoFallingCanvas);
+        // Ensure image loads before starting animation, or use fallback
+        logoImage.onload = () => {
+            resizeLogoFallingCanvas(); // Set canvas size and init particles with image
+            animateFallingLogos();
+        };
+
+        // Fallback for image loading errors
+        logoImage.onerror = () => {
+            console.error("Failed to load mini logo image for falling animation. Using text fallback.");
+            resizeLogoFallingCanvas(); // Set canvas size and init particles with text fallback
+            animateFallingLogos();
+        };
+
+        // If the image is already loaded (e.g., from cache), run initialization
+        if (logoImage.complete) {
+            resizeLogoFallingCanvas();
+            animateFallingLogos();
+        }
+
+
         window.addEventListener('resize', resizeLogoFallingCanvas);
+
 
         // --- Navigation Link Active State ---
         const navLinks = document.querySelectorAll('.nav-links a');
 
-        // Set "Protocol" as active by default
-        // Removed the line that sets "Protocol" as active by default, as "How To Buy" is now a modal trigger.
-        // document.getElementById('navProtocol').classList.add('active'); 
-
         navLinks.forEach(link => {
             link.addEventListener('click', function(event) {
-                // Remove 'active' class from all links
                 navLinks.forEach(nav => nav.classList.remove('active'));
-                // Add 'active' class to the clicked link, unless it's a modal trigger
                 if (!this.classList.contains('open-buy-modal') && !this.classList.contains('open-donate-modal') && this.id !== 'navContactUs') {
                     this.classList.add('active');
                 }
@@ -4067,7 +4157,6 @@
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Only smooth scroll if it's not a modal trigger
                 if (!this.classList.contains('open-buy-modal') && !this.classList.contains('open-donate-modal') && this.id !== 'navContactUs') {
                     e.preventDefault();
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -4105,7 +4194,7 @@
         const individualsModalOverlay = document.getElementById('individualsModalOverlay');
         const individualsModalCloseBtn = document.getElementById('individualsModalCloseBtn');
         const individualsLearnMoreBtn = document.getElementById('individualsLearnMoreBtn');
-        const individualsSecureMszBtn = document.getElementById('individualsSecureMszBtn'); // New: Get the "Secure MSZ" button
+        const individualsSecureMszBtn = document.getElementById('individualsSecureMszBtn');
 
         function openIndividualsModal(event) {
             event.preventDefault();
@@ -4129,8 +4218,8 @@
         // Event listener for "Secure MSZ" button in Individuals modal
         individualsSecureMszBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            closeIndividualsModal(); // Close individuals modal first
-            openBuyMszModal(e); // Open buy MSZ modal
+            closeIndividualsModal();
+            openBuyMszModal(e);
         });
 
         // FAQ Toggle Logic - Individuals Modal
@@ -4143,7 +4232,6 @@
                     answer.classList.remove('show');
                     question.classList.remove('active');
                 } else {
-                    // Close all other open answers within this specific modal
                     individualsModalOverlay.querySelectorAll('.faq-section-in-modal .faq-answer.show').forEach(openAnswer => {
                         openAnswer.classList.remove('show');
                         openAnswer.previousElementSibling.classList.remove('active');
