@@ -2629,6 +2629,15 @@
                 <p>Tokenize, optimize, and unlock new revenue streams through Merss-powered finance.</p>
                 <a href="businesslearnmorepage.html" class="learn-more-btn" id="businessesLearnMoreBtn">Learn more</a>
             </div>
+            <!-- New Developers Card -->
+            <div class="overview-card">
+                <div class="icon">
+                    <svg width="24" height="24" fill="currentColor"><use href="#icon-code"></use></svg>
+                </div>
+                <h3>Developers</h3>
+                <p>Integrate, innovate, and contribute to Merss with open-source tools and a full-featured SDK.</p>
+                <a href="developerslearnmorepage.html" class="learn-more-btn" id="developersLearnMoreBtn">Learn more</a>
+            </div>
         </div>
     </section>
 
@@ -2957,7 +2966,7 @@
                 </div>
 
                 <div class="modal-wallet-address-container">
-                    <span id="walletAddress">0xFF78fDa9294Fd661784445B52818aA1E8777D471</span>
+                    <span id="walletAddress">0xFF78fDa929Fd661784445B52818aA1E8777D471</span>
                     <button class="modal-copy-btn" id="copyAddressBtn">Copy</button>
                 </div>
 
@@ -2996,7 +3005,7 @@
                 </div>
 
                 <div class="modal-wallet-address-container">
-                    <span id="donateWalletAddress">0xFF78fDa9294Fd661784445B52818aA1E8777D471</span>
+                    <span id="donateWalletAddress">0xFF78fDa929Fd661784445B52818aA1E8777D471</span>
                     <button class="modal-copy-btn" id="copyDonateAddressBtn">Copy</button>
                 </div>
 
@@ -3897,7 +3906,8 @@
 
         // Event listeners for "Businesses" and "Developers" Learn More buttons
         const businessesLearnMoreBtn = document.getElementById('businessesLearnMoreBtn');
-       
+        const developersLearnMoreBtn = document.getElementById('developersLearnMoreBtn'); // Get the new button
+
         // Removed the event listener that showed the toast
         // businessesLearnMoreBtn.addEventListener('click', (e) => {
         //     e.preventDefault();
