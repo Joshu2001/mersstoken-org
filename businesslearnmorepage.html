@@ -87,46 +87,6 @@
             min-width: 200px;
         }
 
-        .top-message-bar .action-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            position: relative;
-            min-width: 150px;
-            height: 32px;
-        }
-
-        .top-message-bar .top-bar-btn {
-            background: #000000;
-            color: #ffffff;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease, opacity 0.5s ease, transform 0.5s ease;
-            text-decoration: none;
-            white-space: nowrap;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transform: translateY(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .top-message-bar .top-bar-btn.active {
-            opacity: 1;
-            transform: translateY(0);
-            position: static;
-        }
-
-        .top-message-bar .top-bar-btn:not(.active) {
-            position: absolute;
-            pointer-events: none;
-        }
-
         .top-message-bar .close-btn {
             background: none;
             border: none;
@@ -2338,8 +2298,16 @@
 
         .business-steps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Default for smaller screens */
             gap: 2rem;
+        }
+
+        @media (min-width: 769px) {
+            .business-steps-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 cards per row on larger screens */
+                max-width: 800px; /* Constrain width to make it square-like */
+                margin: 0 auto; /* Center the grid */
+            }
         }
 
         .business-step-card {
@@ -2348,6 +2316,20 @@
             border-radius: 10px;
             padding: 1.5rem;
             text-align: left;
+            transition: all 0.3s ease; /* For hover effects */
+            opacity: 0; /* Initial state for entrance animation */
+            transform: translateY(20px); /* Initial state for entrance animation */
+            animation: none; /* Will be set by JS */
+        }
+
+        .business-step-card.animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .business-step-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .business-step-card .step-number {
@@ -2672,12 +2654,7 @@
             </span>
             <span class="message-text" id="rotatingMessage">Your backing funds liquidity, builds trust, and helps us launch fairly - together.</span>
         </span>
-        <div class="action-group">
-            <a href="#" class="top-bar-btn active open-buy-modal" id="supportProjectBtn">Support Our Project &rarr;</a>
-            <a href="#" class="top-bar-btn open-buy-modal" id="secureTokensBtn">Secure Your First Tokens &rarr;</a>
-            <a href="#" class="top-bar-btn open-buy-modal" id="buyMszBtn">Buy MSZ Now &rarr;</a>
-            <button class="close-btn" id="closeMessageBar">X</button>
-        </div>
+        <button class="close-btn" id="closeMessageBar">X</button>
     </div>
 
     <!-- Animated Stars Background -->
@@ -2694,9 +2671,8 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#" id="navHowtobuy" class="open-buy-modal"> How To Buy</a></li>
-                <li><a href="#tokenomics" id="navTokenomics">Tokenomics</a></li>
-                <li><a href="#what-can-you-do" id="navApplications">Applications</a></li>
-                <li><a href="#individuals-faq-section" id="navFaq">FAQs</a></li>
+                
+                
                 <li><a href="#" id="navContactUs">Contact Us</a></li>
             </ul>
         </nav>
@@ -3083,19 +3059,10 @@
         const mainHeader = document.getElementById('mainHeader');
         const heroSection = document.getElementById('heroSection');
         const rotatingMessageElement = document.getElementById('rotatingMessage');
-        const topBarButtons = document.querySelectorAll('.top-message-bar .top-bar-btn');
 
         // Initial setup for the fixed message
         if (rotatingMessageElement) {
             rotatingMessageElement.textContent = "Your backing funds liquidity, builds trust, and helps us launch fairly - together.";
-        }
-
-        // Only activate the first button in the top message bar
-        if (topBarButtons.length > 0) {
-            topBarButtons[0].classList.add('active');
-            for (let i = 1; i < topBarButtons.length; i++) {
-                topBarButtons[i].classList.remove('active');
-            }
         }
 
         function adjustLayoutForMessageBar() {
@@ -3241,23 +3208,6 @@
                 toastElement.classList.remove('show');
             }, 3000);
         }
-
-        // --- Hero Section Dynamic Content Rotation (REMOVED FOR THIS PAGE) ---
-        // The hero content on this page is static.
-
-        // --- Dark Animation for the new section (REMOVED FOR THIS PAGE) ---
-        // This page doesn't have the "What is Merss?" section with the falling logos.
-
-        // --- Wave Drawing for the Wave Art Section (REMOVED FOR THIS PAGE) ---
-        // This page doesn't have the wave art section.
-
-        // --- MSZ Section Animation (Light Theme with M-shape) (REMOVED FOR THIS PAGE) ---
-        // This page doesn't have the "What Can You Do with MSZ?" section.
-
-        // Roadmap particles (REMOVED FOR THIS PAGE)
-        // Timeline Observer (REMOVED FOR THIS PAGE)
-        // FAQ Toggle Logic - Main Page (REMOVED FOR THIS PAGE)
-
 
         // --- Buy MSZ Modal Logic ---
         const buyMszModalOverlay = document.getElementById('buyMszModalOverlay');
@@ -3452,7 +3402,8 @@
             document.body.style.overflow = 'auto';
         }
 
-        individualsLearnMoreBtn.addEventListener('click', openIndividualsModal);
+        // Note: individualsLearnMoreBtn is not present in the current HTML, so this listener will not attach.
+        // individualsLearnMoreBtn.addEventListener('click', openIndividualsModal);
         individualsModalCloseBtn.addEventListener('click', closeIndividualsModal);
         individualsModalOverlay.addEventListener('click', (e) => {
             if (e.target === individualsModalOverlay) {
@@ -3490,6 +3441,28 @@
         document.querySelector('.logo').addEventListener('click', function(e) {
             e.preventDefault();
             window.location.href = 'index.html'; // Assuming your main page is index.html
+        });
+
+        // Intersection Observer for business step cards animation
+        const businessStepCards = document.querySelectorAll('.business-step-card');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 // Trigger when 20% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        businessStepCards.forEach(card => {
+            observer.observe(card);
         });
     </script>
 </body>
