@@ -256,7 +256,8 @@
             font-size: clamp(2.5rem, 4.5vw, 4.0rem);
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #ffffff 100%);
+            /* Adjusted gradient for a less "white" appearance */
+            background: linear-gradient(135deg, #FFEB99 0%, #FFD700 50%, #FFEB99 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -277,6 +278,7 @@
             line-height: 1.7;
             color: #b3b3b3;
             margin-bottom: 1.5rem;
+            letter-spacing: 0.02em; /* Added for refinement */
         }
 
         .developers-page-section h2 {
@@ -310,6 +312,8 @@
             align-items: flex-start;
             gap: 0.75rem;
             line-height: 1.5;
+            font-weight: 400; /* Added for refinement */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.05); /* Subtle glow */
         }
 
         .developers-page-section ul li .icon {
@@ -355,6 +359,7 @@
             font-size: 1.3rem;
             color: #ffffff;
             margin-bottom: 0.5rem;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* Added for depth */
         }
 
         .resource-card p {
@@ -460,6 +465,7 @@
             font-size: 1.3rem;
             color: #ffffff;
             margin-bottom: 0.75rem;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* Added for depth */
         }
 
         .use-case-card p {
@@ -1023,13 +1029,13 @@
     <!-- Developers Content Section -->
     <section class="developers-page-section">
         <div class="developers-content-wrapper">
-            <h1>👨‍💻 Developers: Build on the Trust Economy</h1>
+            <h1>Developers: Build on the Trust Economy</h1>
             <p class="tagline">Integrate. Innovate. Empower trust at the protocol level.</p>
             <p>
                 Merss isn’t just another token—it’s a programmable trust layer for the next generation of decentralized apps. As a developer, you can extend its capabilities, contribute to the ecosystem, or integrate it into your own dApps, DAOs, or platforms.
             </p>
 
-            <h2>🧠 What You Can Build With Merss</h2>
+            <h2>What You Can Build With Merss</h2>
             <ul>
                 <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>Yield-based dApps:</strong> Use Proof of Trust Epochs (PoTE) to reward long-term behavior instead of activity farming.</li>
                 <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>Composable Finance Protocols:</strong> Leverage Delegated Yield Ledger (DYL) to enable:
@@ -1044,7 +1050,7 @@
                 <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>Reputation-based Credit Models:</strong> Integrate Merss trust epochs into on-chain identity systems to form epoch-weighted credit scores.</li>
             </ul>
 
-            <h2>🔧 Developer Features</h2>
+            <h2>Developer Features</h2>
             <div class="resource-grid">
                 <div class="resource-card">
                     <div class="icon"><svg width="24" height="24" fill="currentColor"><use href="#icon-puzzle-piece"></use></svg></div>
@@ -1073,57 +1079,14 @@
                 </div>
             </div>
 
-            <h2>🌍 Developer Resources</h2>
-            <div class="resource-grid">
-                <div class="resource-card">
-                    <div class="icon"><svg width="24" height="24" fill="currentColor"><use href="#icon-book"></use></svg></div>
-                    <h4>Documentation</h4>
-                    <p>Comprehensive guides and API references. (Coming Soon)</p>
-                </div>
-                <div class="resource-card">
-                    <div class="icon"><svg width="24" height="24" fill="currentColor"><use href="#icon-lightbulb"></use></svg></div>
-                    <h4>Example dApps</h4>
-                    <p>Loan protocol, delegated yield dashboard, creator portal.</p>
-                </div>
-                <div class="resource-card">
-                    <div class="icon"><svg width="24" height="24" fill="currentColor"><use href="#icon-github"></use></svg></div>
-                    <h4>GitHub Access</h4>
-                    <p>Explore our open-source repositories.</p>
-                    <a href="https://github.com/MerssProtocol" target="_blank">View GitHub</a>
-                </div>
-                <div class="resource-card">
-                    <div class="icon"><svg width="24" height="24" fill="currentColor"><use href="#icon-package"></use></svg></div>
-                    <h4>NPM Packages</h4>
-                    <p>Integrate our SDK easily. (Coming Soon)</p>
-                </div>
-                <div class="resource-card">
-                    <div class="icon"><svg width="24" height="24" fill="currentColor"><use href="#icon-droplet"></use></svg></div>
-                    <h4>Testnet Faucet</h4>
-                    <p>Get test tokens for development.</p>
-                </div>
-                <div class="resource-card">
-                    <div class="icon"><svg width="24" height="24" fill="currentColor"><use href="#icon-message"></use></svg></div>
-                    <h4>Join Our Dev Community</h4>
-                    <p>Telegram / Discord for support and collaboration.</p>
-                </div>
-            </div>
-
-            <div class="contribute-section">
-                <h3>🤝 Contribute</h3>
-                <p>Help shape the protocol:</p>
-                <ul>
-                    <li>Submit pull requests</li>
-                    <li>Propose protocol enhancements</li>
-                    <li>Build PoTE extensions or zk-integrations</li>
-                    <li>Participate in audits and bounties</li>
-                </ul>
-            </div>
+            <!-- Removed Developer Resources Section -->
+            <!-- Removed Contribute Section -->
 
             <p class="developer-quote">
                 “Merss is more than a token—it’s a programmable trust economy. Developers aren’t just building apps, they’re building belief systems.”
             </p>
 
-            <h2>🔄 Example Use Cases to Explore</h2>
+            <h2>Example Use Cases to Explore</h2>
             <div class="use-cases-grid">
                 <div class="use-case-card">
                     <h4>Auto-streaming loan repayments via Mites</h4>
