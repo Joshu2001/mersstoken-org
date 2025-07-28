@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merss Protocol - More About Our Tokenomics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles for the entire page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            overflow-y: auto; /* Allow body to scroll normally */
+            padding-top: 60px; /* Adjust for fixed top message bar */
+        }
+
+        /* Top Message Bar */
+        .top-message-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            color: #1a1a1a;
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 1001;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .top-message-bar .message-content {
+            flex-grow: 1;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .top-message-bar .message-icon svg {
+            width: 28px;
+            height: 28px;
+            color: #FFD700;
+            vertical-align: middle;
+        }
+
+        .top-message-bar .message-text {
+            flex-grow: 1;
+            min-width: 200px;
+        }
+
+        .top-message-bar .action-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            position: relative;
+            min-width: 150px;
+            height: 32px;
+        }
+
+        .top-message-bar .top-bar-btn {
+            background: #000000;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, opacity 0.5s ease, transform 0.5s ease;
+            text-decoration: none;
+            white-space: nowrap;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .top-message-bar .top-bar-btn.active {
+            opacity: 1;
+            transform: translateY(0);
+            position: static;
+        }
+
+        .top-message-bar .top-bar-btn:not(.active) {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .top-message-bar .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            transition: background 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .top-message-bar .close-btn:hover {
+            background: #e0e0e0;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            max-width: 800px;
+            margin: 4rem auto 8rem auto;
+            padding: 0 2rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .main-content h1 {
+            font-size: clamp(2.0rem, 4.5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            display: block;
+            text-align: center;
+            white-space: nowrap; /* Ensures text stays on one line */
+            overflow: hidden; /* Hides overflowing content */
+            text-overflow: ellipsis; /* Adds ellipsis if content overflows */
+        }
+
+        .main-content h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 0.5rem;
+            display: flex; /* Use flexbox to align icon and text */
+            align-items: center; /* Vertically align items */
+            gap: 0.75rem; /* Space between icon and text */
+        }
+
+        .main-content h2 .icon {
+            color: #FFD700;
+            font-size: 1.8em; /* Adjust icon size relative to heading */
+        }
+
+
+        .main-content h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .main-content p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: #b3b3b3;
+        }
+
+        .main-content strong {
+            color: #ffffff;
+        }
+
+        .main-content ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: #b3b3b3;
+        }
+
+        .main-content ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .main-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .main-content th, .main-content td {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .main-content th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+            color: #FFD700;
+        }
+
+        .main-content tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .main-content a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .main-content a:hover {
+            text-decoration: underline;
+            color: #e0b83e;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26, 26, 26, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links div {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: default;
+        }
+
+        .footer-links div:hover {
+            color: #ffffff;
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-donation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            gap: 0.75rem;
+        }
+
+        .footer-donation p {
+            margin: 0;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .footer-donation .btn-gold {
+            background: linear-gradient(135deg, #d4af37, #c09a20);
+            color: #1a1a1a;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .footer-donation .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(135deg, #e0b83e, #d0a02b);
+        }
+
+        .footer-donation .wallet-address-container {
+            background: #ffffff;
+            color: #1a1a1a;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+            word-break: break-all;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Social icons in footer */
+        .social-icons a {
+            color: #b3b3b3; /* Default icon color */
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #FFD700; /* Gold on hover */
+        }
+
+        /* Toast Notification Styles */
+        .toast-notification {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1003;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, bottom 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast-notification.show {
+            display: block;
+            opacity: 1;
+            bottom: 30px;
+        }
+
+        /* Modal Styles (for buy/donate modals, if needed, but not directly included here) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 0;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            transition: background 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-body p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            color: #b3b3b3;
+        }
+
+        .modal-info-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .modal-info-box strong {
+            color: #FFD700;
+        }
+
+        .modal-qr-code {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .modal-qr-code img {
+            width: 180px;
+            height: 180px;
+            border-radius: 8px;
+            border: 5px solid #ffffff;
+            background-color: #ffffff;
+            padding: 5px;
+        }
+
+        .modal-wallet-address-container {
+            background: #333333;
+            color: #ffffff;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-copy-btn {
+            background: #FFD700;
+            color: #1a1a1a;
+            border: none;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .modal-copy-btn:hover {
+            background: #e0b83e;
+            transform: translateY(-1px);
+        }
+
+        .modal-calculator {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-calculator h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+            text-align: center;
+        }
+
+        .modal-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .modal-input-group label {
+            font-size: 0.9rem;
+            color: #b3b3b3;
+            flex-shrink: 0;
+            width: 80px;
+            text-align: right;
+        }
+
+        .modal-input-group input {
+            flex-grow: 1;
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .modal-input-group input:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .modal-result {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #FFD700;
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #FFD700;
+            margin-top: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-message-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.75rem 1rem;
+            }
+
+            .top-message-bar .action-group {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin: 2rem auto 4rem auto;
+                padding: 0 1rem;
+            }
+
+            .main-content h1 {
+                font-size: 2.5rem;
+                white-space: normal; /* Allow wrapping on very small screens if needed */
+                overflow: visible;
+                text-overflow: clip;
+            }
+
+            .main-content h2 {
+                font-size: 2rem;
+            }
+
+            .main-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .main-content p, .main-content ul li, .main-content table {
+                font-size: 0.95rem;
+            }
+
+            .main-content th, .main-content td {
+                padding: 0.75rem;
+            }
+
+            footer {
+                padding: 2rem 1rem 0.5rem;
+            }
+
+            .footer-donation, .contact-social {
+                width: 100%;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SVG Definitions for Icons -->
+    <svg style="display: none;">
+        <!-- Fire Icon (for top message bar) -->
+        <symbol id="icon-fire" viewBox="0 0 24 24">
+            <path d="M12 2c-4.97 0-9 4.03-9 9 0 3.25 1.77 6.16 4.45 7.74-.53.18-1.07.3-1.6.3-.53 0-1.06-.09-1.58-.27-.52-.18-1.04-.27-1.55-.27-2.76 0-5 2.24-5 5s2.24 5 5 5c.51 0 1.03.09 1.55.27.52.18 1.06.27 1.58.27 1.07 0 2.14-.12 3.18-.36C16.23 20.16 18 17.25 18 14c0-4.97-4.03-9-9-9zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </symbol>
+        <!-- LinkedIn Icon (for team social) -->
+        <symbol id="icon-linkedin" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </symbol>
+        <!-- Twitter/X Icon -->
+        <symbol id="icon-twitter-x" viewBox="0 0 24 24">
+            <path d="M18.901 1.153h3.68l-8.026 9.245 9.773 12.102h-8.23l-6.22-7.702-7.18 7.702h-3.68l8.441-9.043-9.15-10.162h8.441l5.204 6.745zm-2.863 17.513h1.99L7.41 4.195H5.324z"/>
+        </symbol>
+        <!-- Reddit Icon -->
+        <symbol id="icon-reddit" viewBox="0 0 24 24">
+            <path d="M2.27 12c0-1.83 1.49-3.32 3.32-3.32h1.49l.64-2.12c.11-.37.45-.64.85-.64h6.71c.4 0 .74.27.85.64l.64 2.12h1.49c1.83 0 3.32 1.49 3.32 3.32v6.71c0 1.83-1.49 3.32-3.32 3.32H5.59c-1.83 0-3.32-1.49-3.32-3.32V12zm10.73 6.71c-1.83 0-3.32-1.49-3.32-3.32s1.49-3.32 3.32-3.32 3.32 1.49 3.32 3.32-1.49 3.32-3.32 3.32zm-5.32-3.32c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1zm8.64 0c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1z"/>
+        </symbol>
+    </svg>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotification">
+        Address copied to clipboard!
+    </div>
+    <div class="toast-notification" id="thankYouToast">
+        Thank you for helping us advance the project!
+    </div>
+
+    <!-- Top Message Bar -->
+    <div class="top-message-bar" id="topMessageBar">
+        <span class="message-content">
+            <span class="message-icon">
+                <svg width="24" height="24" fill="currentColor"><use href="#icon-fire"></use></svg>
+            </span>
+            <span class="message-text" id="rotatingMessage">Your backing funds liquidity, builds trust, and helps us launch fairly - together.</span>
+        </span>
+        <div class="action-group">
+            <a href="#" class="top-bar-btn active open-buy-modal" id="supportProjectBtn">Support Our Project &rarr;</a>
+            <a href="#" class="top-bar-btn open-buy-modal" id="secureTokensBtn">Secure Your First Tokens &rarr;</a>
+            <a href="#" class="top-bar-btn open-buy-modal" id="buyMszBtn">Buy MSZ Now &rarr;</a>
+            <button class="close-btn" id="closeMessageBar">X</button>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <h1>More About Our Tokenomics</h1>
+        <p>Understanding the Core Economic Design Behind Merss (MSZ)</p>
+        <p>At first glance, tokenomics might look like just a set of supply figures and allocation charts. But with Merss (MSZ), tokenomics isn’t just about numbers, it's about encoding trust, time, and commitment directly into the protocol. This is where Merss sets itself apart from inflation-heavy DeFi clones and staking games.</p>
+        <p>We’ve engineered a deflationary, DAO-governed, programmable yield architecture that puts long-term holders and ecosystem contributors at the center of value creation. Let’s go deeper.</p>
+
+        <h2><span class="icon"><i class="fas fa-calculator"></i></span> Total Supply & Atomic Units</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Total Supply Cap</td>
+                    <td>100,000,000 MSZ</td>
+                </tr>
+                <tr>
+                    <td>Divisibility</td>
+                    <td>1 MSZ = 1,000,000,000 Mites</td>
+                </tr>
+                <tr>
+                    <td>Smallest Unit</td>
+                    <td>Mite (1 billion per MSZ)</td>
+                </tr>
+                <tr>
+                    <td>TPS Capacity</td>
+                    <td>100,000+</td>
+                </tr>
+                <tr>
+                    <td>Slashing Risk</td>
+                    <td>Zero</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>MSZ is hard-capped at 100 million tokens, with Mites serving as ultra-fine units for micro-yield flow, sub-cent transactions, and global inclusivity. Mites are what satoshis wish they were, programmable units of trust.</p>
+
+        <h2><span class="icon"><i class="fas fa-hourglass-half"></i></span> Emission Philosophy: Time Is the Currency</h2>
+        <p>Unlike mining or staking loops that reward activity and power, MSZ rewards time itself. Through our unique mechanism called Proof of Trust Epochs (PoTE), yield and governance power are earned by how long MSZ is held or delegated, not how much was thrown into a lockup.</p>
+        <ul>
+            <li>No slashing, no “oops, you lost internet for 30 minutes so we nuked your yield”</li>
+            <li>No front-running whales, governance is based on when you entered and how long you stayed, not just how much you bought</li>
+        </ul>
+        <p><span class="icon"><i class="fas fa-quote-left"></i></span> “Time-weighted belief replaces speculative greed.”</p>
+
+        <h2><span class="icon"><i class="fas fa-lock"></i></span> Token Allocation</h2>
+        <ul>
+            <li><strong>30% (30M MSZ):</strong> Pre-minted to DAO & early strategic partners</li>
+            <li><strong>70% (70M MSZ):</strong> Vested over time to the treasury/owner, governed by trust-aligned emissions</li>
+        </ul>
+        <p>Unlike protocols that dump their reserves or pre-allocate vast swaths to VCs, our emission is DAO-controlled, time-based, and subject to Trust Epoch multipliers.</p>
+        <p>Additionally, the contract enables the burning of up to 1% of the total supply (1M MSZ) by the owner, to reduce inflation or remove maliciously acquired tokens, offering flexibility with accountability.</p>
+
+        <h2><span class="icon"><i class="fas fa-compass"></i></span> Delegated Yield Rights (DYR) & the DYL Ledger</h2>
+        <p>Your yield is yours to keep or to redirect.</p>
+        <p>Thanks to the Delegated Yield Ledger (DYL):</p>
+        <ul>
+            <li>You can delegate yield to others (e.g., creators, DAOs, friends) without giving up your tokens</li>
+            <li>The recipient receives the yield flow, while you retain ownership of the MSZ</li>
+            <li>Use cases: Sponsored creators, programmable royalty streams, mentorship DAOs, yield NFTs</li>
+        </ul>
+        <p>This makes MSZ yield composable, programmable, and revocable, features that don’t exist in most DeFi protocols.</p>
+
+        <h2><span class="icon"><i class="fas fa-brain"></i></span> Governance That Rewards Commitment</h2>
+        <p>Governance in Merss isn’t a plutocracy. We replaced "how much" with "how long."</p>
+        <ul>
+            <li>Trust Epoch score = voting power</li>
+            <li>No whales buying influence overnight</li>
+            <li>No slashing for inactivity</li>
+            <li>Influence fades with apathy, not with momentary absence</li>
+        </ul>
+        <h3>Proposal Flow:</h3>
+        <ul>
+            <li><strong>Draft:</strong> Anyone may propose</li>
+            <li><strong>Validate:</strong> Reach minimum trust threshold</li>
+            <li><strong>Vote:</strong> Time-weighted voting power enforces belief over bias</li>
+        </ul>
+
+        <h2><span class="icon"><i class="fas fa-cogs"></i></span> Smart Contract Design</h2>
+        <ul>
+            <li>UUPS Proxy upgradeable (future-proof)</li>
+            <li>Chainlink-integrated for BNB/USD accuracy</li>
+            <li>Gated permissions via <code>onlyDAO()</code> logic</li>
+            <li><code>canWithdraw()</code> logic enforces epoch-based reward claiming</li>
+        </ul>
+        <p>Yield isn't farmed. It's earned, and only withdrawable after satisfying time + trust conditions. This builds honest participation, and erases parasitic behaviors from liquidity mercenaries.</p>
+
+        <h2><span class="icon"><i class="fas fa-building"></i></span> Real-World Applications: Not Vaporware</h2>
+        <p>MSZ isn’t a speculative token, it’s an economic substrate that powers new decentralized relationships:</p>
+        <ul>
+            <li>On Regaarder, Fans don’t “tip.” They pledge Mites as trust, creating sustainable creator economies</li>
+            <li>Trust Pools, Community-based lending or savings groups using time as credit history</li>
+            <li>Micro-DAOs, Funding mentorship programs or education collectives via delegated trust</li>
+            <li>Collateralized Yield, Borrow stablecoins using your yield rights as collateral — no need to sell your MSZ</li>
+        </ul>
+
+        <h2><span class="icon"><i class="fas fa-flask"></i></span> What’s Next: The Future of Trust Finance</h2>
+        <p>The vision doesn’t end here. On the roadmap:</p>
+        <ul>
+            <li>zkPoTE, Zero-knowledge confidential epochs</li>
+            <li>Decentralized Identity (DID), Trust-based credit scoring</li>
+            <li>Yield Marketplaces, Trade or lease yield streams</li>
+            <li>Programmable Repayment Streams, Smart repayments over time in Mites</li>
+        </ul>
+        <p>We're building the first trust-driven financial engine, not for whales, but for real, long-term builders and believers.</p>
+
+        <h2><span class="icon"><i class="fas fa-flag-checkered"></i></span> Final Thought</h2>
+        <p>Merss is not a staking protocol,</p>
+        <p>It’s not a meme token,</p>
+        <p>It’s not another locked-yield DeFi pump,</p>
+        <p>It’s a new economic logic, where time = trust, and trust = value.</p>
+        <p>So if you’re looking to flip, look elsewhere.</p>
+        <p>But if you're building for the long term, join the epoch.</p>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+
+            <!-- Donation Section -->
+            <div class="footer-donation text-center md:text-left">
+                <p class="text-lg font-semibold mb-2">Support Mersstoken.org:</p>
+                <button class="btn btn-gold open-donate-modal" id="footerDonateBtn">Donate</button>
+                <div class="wallet-address-container mt-2" id="footerWalletAddressContainer">
+                    0xFF78fDa9294Fd661784445B52818aA1E8777D471
+                </div>
+            </div>
+
+            <!-- Contact and Social Media Section -->
+            <div class="contact-social text-center md:text-right">
+                <p class="text-lg font-semibold mb-2">Contact us:</p>
+                <div class="social-icons flex justify-center md:justify-end items-center mb-3">
+                    <!-- Email Address (plain text) -->
+                    <span class="text-white text-md mr-4">Contact@mersstoken.org</span>
+
+                    <!-- Twitter Icon -->
+                    <a href="https://x.com/MerssOfficial" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <!-- Reddit Icon -->
+                    <a href="https://www.reddit.com/r/MerssToken/" target="_blank" rel="noopener noreferrer" aria-label="Join us on Reddit">
+                        <i class="fab fa-reddit"></i>
+                    </a>
+                </div>
+                <div class="copyright text-sm text-gray-400">
+                    © 2025 Merss Protocol. Building the Last and most evolved form of Crypto.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Buy MSZ Modal (Placeholder - not fully functional without main page JS) -->
+    <div class="modal-overlay" id="buyMszModalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>How to Buy MSZ</h2>
+                <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Scan the QR code below or copy the address to send BNB and receive the equivalent in MSZ.</p>
+                <p>Feel free to scroll the page and use the calculator to estimate how many MSZ tokens you'll receive.</p>
+                <p>Tokens are typically sent within 10 minutes.</p>
+                <p>If you encounter any issues, please contact us at: <a href="mailto:contact@mersstoken.org">contact@mersstoken.org</a></p>
+
+                <div class="modal-info-box">
+                    <strong>Current MSZ rate:</strong> 1 BNB = <span id="mszRate">207.27</span> MSZ<br>
+                    <strong>Minimum purchase:</strong> 0.01 BNB - <strong>Maximum:</strong> 50 BNB<br>
+                    <strong>Presale ends on August 10th - don't miss out!</strong>
+                </div>
+
+                <div class="modal-qr-code">
+                    <img src="https://i.postimg.cc/2bL9VhY9/merss-donation-qr.png" alt="QR Code to send BNB">
+                </div>
+
+                <div class="modal-wallet-address-container">
+                    <span id="walletAddress">0xFF78fDa929Fd661784445B52818aA1E8777D471</span>
+                    <button class="modal-copy-btn" id="copyAddressBtn">Copy</button>
+                </div>
+
+                <div class="modal-calculator">
+                    <h4>MSZ Calculator</h4>
+                    <div class="modal-input-group">
+                        <label for="bnbAmount">BNB Amount:</label>
+                        <input type="number" id="bnbAmount" placeholder="e.g., 0.5" step="0.01" min="0.01" max="50">
+                    </div>
+                    <div class="modal-result">
+                        You will receive: <span id="mszResult">0</span> MSZ
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donate Modal (Placeholder - not fully functional without main page JS) -->
+    <div class="modal-overlay" id="donateModalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Support Mersstoken.org</h2>
+                <button class="modal-close-btn" id="donateModalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for considering a donation to Merss Protocol. Your support helps us continue to develop and improve our project.</p>
+                <p>Scan the QR code below or copy the address to send your BNB donation.</p>
+                <p>Every contribution, big or small, makes a difference!</p>
+
+                <div class="modal-info-box">
+                    <strong>Donation Address:</strong> BNB (BEP-20) Network Only
+                </div>
+
+                <div class="modal-qr-code">
+                    <img src="https://i.postimg.cc/2bL9VhY9/merss-donation-qr.png" alt="QR Code for Donation">
+                </div>
+
+                <div class="modal-wallet-address-container">
+                    <span id="donateWalletAddress">0xFF78fDa929Fd661784445B52818aA1E8777D471</span>
+                    <button class="modal-copy-btn" id="copyDonateAddressBtn">Copy</button>
+                </div>
+
+                <div class="modal-calculator">
+                    <h4>Optional: Enter Donation Amount</h4>
+                    <div class="modal-input-group">
+                        <label for="donateBnbAmount">BNB:</label>
+                        <input type="number" id="donateBnbAmount" placeholder="e.g., 0.1" step="0.01" min="0">
+                    </div>
+                    <div class="modal-result">
+                        Equivalent in USD (approx): <span id="donateUsdResult">0.00</span> USD
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BNB_TO_MSZ_RATE = 207.27; // From the modal image
+        const BNB_TO_USD_RATE = 600; // Example: 1 BNB = 600 USD (adjust as needed)
+
+        // Toast Notification
+        const toastNotification = document.getElementById('toastNotification');
+        const thankYouToast = document.getElementById('thankYouToast');
+
+        function showToast(message, toastElement) {
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 3000);
+        }
+
+        // Top Message Bar functionality
+        const topMessageBar = document.getElementById('topMessageBar');
+        const rotatingMessageElement = document.getElementById('rotatingMessage');
+        const topBarButtons = document.querySelectorAll('.top-message-bar .top-bar-btn');
+
+        // Initial setup for the fixed message
+        if (rotatingMessageElement) {
+            rotatingMessageElement.textContent = "Your backing funds liquidity, builds trust, and helps us launch fairly - together.";
+        }
+
+        // Only activate the first button in the top message bar
+        if (topBarButtons.length > 0) {
+            topBarButtons[0].classList.add('active');
+            for (let i = 1; i < topBarButtons.length; i++) {
+                topBarButtons[i].classList.remove('active');
+            }
+        }
+
+        // Close message bar functionality
+        document.getElementById('closeMessageBar').addEventListener('click', () => {
+            topMessageBar.style.display = 'none'; // Hide the message bar
+            document.body.style.paddingTop = '0'; // Remove padding from body
+        });
+
+        // Initial body padding adjustment on load
+        window.addEventListener('load', () => {
+            if (topMessageBar && topMessageBar.offsetHeight > 0) {
+                document.body.style.paddingTop = topMessageBar.offsetHeight + 'px';
+            }
+        });
+        window.addEventListener('resize', () => {
+            if (topMessageBar && topMessageBar.offsetHeight > 0) {
+                document.body.style.paddingTop = topMessageBar.offsetHeight + 'px';
+            }
+        });
+
+        // --- Buy MSZ Modal Logic ---
+        const buyMszModalOverlay = document.getElementById('buyMszModalOverlay');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const openBuyModalButtons = document.querySelectorAll('.open-buy-modal');
+        const bnbAmountInput = document.getElementById('bnbAmount');
+        const mszResultSpan = document.getElementById('mszResult');
+        const copyAddressBtn = document.getElementById('copyAddressBtn');
+        const walletAddressSpan = document.getElementById('walletAddress');
+
+        function openBuyMszModal(event) {
+            event.preventDefault();
+            buyMszModalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            bnbAmountInput.value = '';
+            mszResultSpan.textContent = '0';
+        }
+
+        function closeBuyMszModal() {
+            buyMszModalOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        openBuyModalButtons.forEach(button => {
+            button.addEventListener('click', openBuyMszModal);
+        });
+
+        modalCloseBtn.addEventListener('click', closeBuyMszModal);
+        buyMszModalOverlay.addEventListener('click', (e) => {
+            if (e.target === buyMszModalOverlay) {
+                closeBuyMszModal();
+            }
+        });
+
+        // Calculator logic
+        bnbAmountInput.addEventListener('input', () => {
+            const bnbAmount = parseFloat(bnbAmountInput.value);
+            if (!isNaN(bnbAmount) && bnbAmount >= 0.01 && bnbAmount <= 50) {
+                const mszAmount = bnbAmount * BNB_TO_MSZ_RATE;
+                mszResultSpan.textContent = mszAmount.toFixed(2);
+            } else if (bnbAmountInput.value === '') {
+                mszResultSpan.textContent = '0';
+            } else {
+                mszResultSpan.textContent = 'Invalid amount';
+            }
+        });
+
+        // Copy wallet address to clipboard
+        copyAddressBtn.addEventListener('click', () => {
+            const addressToCopy = walletAddressSpan.textContent;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = addressToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Address copied to clipboard!', toastNotification);
+        });
+
+        // --- Donate Modal Logic ---
+        const donateModalOverlay = document.getElementById('donateModalOverlay');
+        const donateModalCloseBtn = document.getElementById('donateModalCloseBtn');
+        const openDonateModalButtons = document.querySelectorAll('.open-donate-modal');
+        const donateBnbAmountInput = document.getElementById('donateBnbAmount');
+        const donateUsdResultSpan = document.getElementById('donateUsdResult');
+        const copyDonateAddressBtn = document.getElementById('copyDonateAddressBtn');
+        const donateWalletAddressSpan = document.getElementById('donateWalletAddress');
+
+        function openDonateModal(event) {
+            event.preventDefault();
+            donateModalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            donateBnbAmountInput.value = '';
+            donateUsdResultSpan.textContent = '0.00';
+        }
+
+        function closeDonateModal() {
+            donateModalOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        openDonateModalButtons.forEach(button => {
+            button.addEventListener('click', openDonateModal);
+        });
+
+        donateModalCloseBtn.addEventListener('click', closeDonateModal);
+        donateModalOverlay.addEventListener('click', (e) => {
+            if (e.target === donateModalOverlay) {
+                closeDonateModal();
+            }
+        });
+
+        // Donate Calculator logic (BNB to USD)
+        donateBnbAmountInput.addEventListener('input', () => {
+            const bnbAmount = parseFloat(donateBnbAmountInput.value);
+            if (!isNaN(bnbAmount) && bnbAmount >= 0) {
+                const usdAmount = bnbAmount * BNB_TO_USD_RATE;
+                donateUsdResultSpan.textContent = usdAmount.toFixed(2);
+            } else if (donateBnbAmountInput.value === '') {
+                donateUsdResultSpan.textContent = '0.00';
+            } else {
+                donateUsdResultSpan.textContent = 'Invalid amount';
+            }
+        });
+
+        // Copy donate wallet address to clipboard
+        copyDonateAddressBtn.addEventListener('click', () => {
+            const addressToCopy = donateWalletAddressSpan.textContent;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = addressToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Address copied to clipboard!', toastNotification);
+        });
+
+        // Footer wallet address copy
+        document.getElementById('footerWalletAddressContainer').addEventListener('click', () => {
+            const addressToCopy = document.getElementById('footerWalletAddressContainer').textContent.trim();
+            const tempInput = document.createElement('textarea');
+            tempInput.value = addressToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Address copied to clipboard!', toastNotification);
+        });
+    </script>
+</body>
+</html>
