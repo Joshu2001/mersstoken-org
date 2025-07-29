@@ -568,9 +568,9 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr; /* Keep 2 columns for text and stats container */
             gap: 4rem;
-            align-items: center;
+            align-items: start; /* Align items to the start of the grid area */
         }
 
         .tokenomics-text {
@@ -583,10 +583,18 @@
             color: #ffffff;
         }
 
-        .tokenomics-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        /* New container for the detailed stats grid */
+        .tokenomics-stats-container {
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
+        }
+
+        .tokenomics-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexible grid for many cards */
+            gap: 1.5rem; /* Reduced gap for more cards */
+            width: 100%;
         }
 
         .stat-card {
@@ -595,18 +603,66 @@
             border-radius: 15px;
             padding: 1.5rem;
             text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px); /* Glassmorphic effect */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px; /* Ensure consistent height */
         }
 
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .stat-label {
             color: #b3b3b3;
             font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            word-break: break-word; /* Allow long text to wrap */
+        }
+
+        .stat-value {
+            font-size: 1.5rem; /* Slightly smaller for more cards */
+            font-weight: 800;
+            color: #ffffff;
+            word-break: break-all; /* Ensure long addresses break */
+        }
+
+        .stat-value.small-text {
+            font-size: 1.1rem; /* Even smaller for very long values */
+        }
+
+        .stat-value a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .stat-value a:hover {
+            color: #e0b83e;
+            text-decoration: underline;
+        }
+
+        .stat-card .copy-btn {
+            background: #FFD700;
+            color: #1a1a1a;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        .stat-card .copy-btn:hover {
+            background: #e0b83e;
+            transform: translateY(-1px);
         }
 
         .tokenomics-actions {
@@ -638,6 +694,18 @@
 
         .tokenomics-links div:hover {
             color: #FFD700;
+        }
+
+        /* Arrow animation for links/buttons */
+        .animated-arrow {
+            display: inline-block;
+            transition: transform 0.3s ease-out;
+            margin-left: 0.5rem;
+        }
+
+        .btn:hover .animated-arrow,
+        .tokenomics-text a:hover .animated-arrow {
+            transform: translateX(5px);
         }
 
         /* Footer */
@@ -804,7 +872,7 @@
             }
             
             .tokenomics-content {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Stack text and stats container */
                 gap: 2rem;
             }
             
@@ -868,6 +936,9 @@
             }
             .what-can-you-do-grid {
                 grid-template-columns: 1fr;
+            }
+            .tokenomics-stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller cards on mobile */
             }
         }
 
@@ -2771,32 +2842,86 @@
                     <!-- Added new link for "Read more about our tokennomics" -->
                     <p style="font-size: 0.95rem; color: #b3b3b3; margin-top: 1.5rem;">
                         <a href="tokennomicsreadmore.html" style="color: #FFD700; text-decoration: none; transition: color 0.2s ease;">
-                            .... Read more about our tokenomics
+                            .... Read more about our tokenomics <span class="animated-arrow">&rarr;</span>
                         </a>
                     </p>
                 </div>
             </div>
-            <div class="tokenomics-stats">
-                <div class="stat-card">
-                    <div class="stat-value">100M</div>
-                    <div class="stat-label">Total Supply Cap</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">1B</div>
-                    <div class="stat-label">Mites per MSZ</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">100K+</div>
-                    <div class="stat-label">TPS Capacity</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label">Slashing Risk</div>
+            <div class="tokenomics-stats-container">
+                <div class="tokenomics-stats-grid">
+                    <!-- New and updated stat cards -->
+                    <div class="stat-card">
+                        <div class="stat-label">Token Name</div>
+                        <div class="stat-value">Merss (MSZ)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Contract Address</div>
+                        <div class="stat-value small-text" id="tokenomicsContractAddress">0xE215B736f58aa3A223958E1871EC1270fF043425</div>
+                        <button class="copy-btn" data-copy-target="tokenomicsContractAddress">Copy</button>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Blockchain</div>
+                        <div class="stat-value">BNB Chain (BEP-20)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Live Price (approx)</div>
+                        <div class="stat-value small-text">~0.00002484 BNB <br>($0.008 USD)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Max Total Supply</div>
+                        <div class="stat-value">31,700,000 MSZ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Circulating Supply</div>
+                        <div class="stat-value">100,522.86 MSZ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Onchain Market Cap</div>
+                        <div class="stat-value">~$253,600</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Circulating Supply MCap</div>
+                        <div class="stat-value">~$804</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">DEX Listing</div>
+                        <div class="stat-value">
+                            <a href="https://pancakeswap.finance/swap?outputCurrency=0xE215B736f58aa3A223958E1871EC1270fF043425" target="_blank">PancakeSwap</a>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label"># of Holders</div>
+                        <div class="stat-value">6</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label"># of Transfers</div>
+                        <div class="stat-value">16</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Liquidity Pool Size</div>
+                        <div class="stat-value small-text">0.0001 BNB <br>(4.02553 MSZ)</div>
+                    </div>
+                    <!-- Original stats, adjusted to fit new grid -->
+                    <div class="stat-card">
+                        <div class="stat-label">Mites per MSZ</div>
+                        <div class="stat-value">1B</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">TPS Capacity</div>
+                        <div class="stat-value">100K+</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Slashing Risk</div>
+                        <div class="stat-value">0</div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="tokenomics-actions">
-            <a href="https://docs.google.com/document/d/1unCUccdkm-Zy5h0DOz5IYWHuSG71WMYY/edit?usp=drive_link&ouid=105341595759999124379&rtpof=true&sd=true" target="_blank" class="btn btn-secondary" id="readWhitepaperBtn">Read our Whitepaper</a>
+            <a href="https://docs.google.com/document/d/1unCUccdkm-Zy5h0DOz5IYWHuSG71WMYY/edit?usp=drive_link&ouid=105341595759999124379&rtpof=true&sd=true" target="_blank" class="btn btn-secondary" id="readWhitepaperBtn">Read our Whitepaper <span class="animated-arrow">&rarr;</span></a>
+            <p style="color: #b3b3b3; font-size: 0.85rem; margin-top: 0.5rem; text-align: center; max-width: 600px;">
+                This website reflects the most current and accurate information. In the event of inconsistencies with the whitepaper, the website’s content takes precedence.
+            </p>
         </div>
     </section>
 
@@ -2972,7 +3097,7 @@
                 </div>
 
                 <div class="modal-wallet-address-container">
-                    <span id="walletAddress">0xFF78fDa929Fd661784445B52818aA1E8777D471</span>
+                    <span id="walletAddress">0xFF78fDa9294Fd661784445B52818aA1E8777D471</span>
                     <button class="modal-copy-btn" id="copyAddressBtn">Copy</button>
                 </div>
 
@@ -3097,7 +3222,7 @@
                 <h3>✅ What You Get</h3>
                 <ul>
                     <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>Auto-rewarded holding:</strong> Earn yield without staking or farming. Your wallet balance works for you.</li>
-                    <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>Slashing-free trust:</strong> No penalties for withdrawing or being inactive. You’re never punished for staying safe.</li>
+                    <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>Slashing-free trust:</b> No penalties for withdrawing or being inactive. You’re never punished for staying safe.</li>
                     <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>Long-term benefits:</strong> The longer you hold, the higher your reward potential through Trust Epoch multipliers.</li>
                     <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>No lock-ups required:</strong> Withdraw anytime after reaching your eligibility period.</li>
                     <li><span class="icon"><svg width="20" height="20" fill="currentColor"><use href="#icon-check"></use></svg></span> <strong>Future-ready:</strong> Soon, you’ll be able to borrow against your MSZ using your time-based yield rights as collateral—without selling your tokens.</li>
@@ -3139,7 +3264,7 @@
                 <ul>
                     <li><strong>Time Held:</strong> Boosts your yield multiplier</li>
                     <li><strong>Epoch Participation:</strong> Increases governance weight</li>
-                    <li><strong>Delegation Behavior:</strong> Future yield flexibility (optional)</li>
+                    <li><strong>Delegation Behavior:</b> Future yield flexibility (optional)</li>
                     <li><strong>DAO Parameters:</strong> DAO may vote to adjust yield tiers</li>
                 </ul>
                 <div class="modal-info-box">
@@ -4254,6 +4379,24 @@
                     });
                     answer.classList.add('show');
                     question.classList.add('active');
+                }
+            });
+        });
+
+        // Copy buttons for tokenomics section
+        document.querySelectorAll('.tokenomics .copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.copyTarget;
+                const elementToCopy = document.getElementById(targetId);
+                if (elementToCopy) {
+                    const textToCopy = elementToCopy.textContent;
+                    const tempInput = document.createElement('textarea');
+                    tempInput.value = textToCopy;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                    showToast('Address copied to clipboard!', toastNotification);
                 }
             });
         });
